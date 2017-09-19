@@ -1,0 +1,32 @@
+{
+  "name": "mrcnpdlk/grandstream-utils",
+  "description": "Grandstream telephone utils",
+  "keywords": [
+    "grandstream",
+    "GXP21xx"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcin Pudełek",
+      "email": "marcin@pudelek.org.pl",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.0",
+    "psr/log": "1.0.2"
+  },
+  "require-dev": {
+    "monolog/monolog": "^1.23",
+    "phpunit/phpunit": "~6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "mrcnpdlk\\GSUtils\\": "src/mrcnpdlk/GSUtils/"
+    }
+  }
+}
