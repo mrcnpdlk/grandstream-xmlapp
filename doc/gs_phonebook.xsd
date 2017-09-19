@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="AddressBook">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Contact" minOccurs="1" maxOccurs="unbounded">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="LastName" type="xsd:string" minOccurs="1"/>
+                            <xsd:element name="FirstName" minOccurs="0" type="xsd:string" nillable="true"/>
+                            <xsd:element name="Address" minOccurs="0" nillable="true">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="address1" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="address2" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                                        <xsd:element name="city" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="state" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="zipcode" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="country" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="Phone">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="phonenumber" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                                        <xsd:element name="accountindex" type="xsd:integer" minOccurs="1" maxOccurs="1"
+                                                     default="1"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="Email" type="xsd:string" minOccurs="0" nillable="true"/>
+                            <xsd:element name="Department" type="xsd:string" minOccurs="0" nillable="true"/>
+                            <xsd:element name="Company" type="xsd:string" minOccurs="0" nillable="true"/>
+                            <xsd:element name="Icon" type="xsd:base64Binary" minOccurs="0" nillable="true"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

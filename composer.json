@@ -5,7 +5,7 @@
     "grandstream",
     "GXP21xx"
   ],
-  "type": "library",
+  "type": "project",
   "license": "MIT",
   "authors": [
     {
@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "mrcnpdlk\\GSUtils\\": "src/mrcnpdlk/GSUtils/"
+      "mrcnpdlk\\GSUtils\\": "src/"
     }
   }
 }
