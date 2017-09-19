@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Screen">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="IdleScreen" minOccurs="1" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <!-- The ShowStatusLine element is now optional and default to false. Ignored by GXP2020 -->
+                            <xs:element name="ShowStatusLine" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+                            <xs:element name="DisplayBitmap" type="BitmapType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+                            <xs:element name="DisplayString" type="StringType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+                            <!-- The DisplaySoftKey element apply only to GXP-2020/2010 and is ignored by GXP-2000 -->
+                            <xs:element name="DisplaySoftKey" type="SoftKeyType" minOccurs="0" maxOccurs="12"
+                                        nillable="true"/>
+                            <!-- The UseDefaultSoftKeys element apply only to GXP-2020/2010 and is ignored by GXP-2000
+                            If it is missing by default it is false, when it is true, any DisplaySoftKey elements
+                            would be ignored and the system default softkeys would apply -->
+                            <xs:element name="UseDefaultSoftKeys" type="xs:boolean" minOccurs="0" maxOccurs="1" default="false"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BitmapType">
+        <xs:sequence>
+            <xs:element name="Bitmap" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="X" type="xs:integer" minOccurs="1" maxOccurs="1" default="0"/>
+            <xs:element name="Y" type="xs:integer" minOccurs="1" maxOccurs="1" default="0"/>
+            <!-- The new element displayCondition deprecates the old attribute alreg.
+            If displayCondition is found alreg will be ignored.
+            The old attribute al1reg is kept for backward compatibility -->
+            <xs:element name="displayCondition" type="IdleScreenConditionType" minOccurs="0" maxOccurs="1" nillable="true"/>
+        </xs:sequence>
+        <!-- This attribute is deprecated, please use the displayCondition element instead -->
+        <xs:attribute name="a1reg" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="StringType">
+        <xs:sequence>
+            <xs:element name="DisplayStr" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="X" type="xs:integer" minOccurs="1" maxOccurs="1" default="0"/>
+            <xs:element name="Y" type="xs:integer" minOccurs="1" maxOccurs="1" default="0"/>
+            <!-- The new element displayCondition deprecates the old attribute alreg.
+            If displayCondition is found alreg will be ignored.
+            The old attribute al1reg is kept for backward compatibility -->
+            <xs:element name="displayCondition" type="IdleScreenConditionType" minOccurs="0" maxOccurs="1" nillable="true"/>
+        </xs:sequence>
+        <!-- This attribute is deprecated, please use the displayCondition element instead -->
+        <xs:attribute name="a1reg" type="xs:boolean"/>
+        <xs:attribute name="font" default="f8">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="f8"/>
+                    <xs:enumeration value="f10"/>
+                    <xs:enumeration value="f13h"/>
+                    <xs:enumeration value="f13b"/>
+                    <xs:enumeration value="f16"/>
+                    <xs:enumeration value="f16b"/>
+                    <!-- c suffix fonts are Comic fonts -->
+                    <xs:enumeration value="f18c"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="halign" default="Left">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Left"/>
+                    <xs:enumeration value="Center"/>
+                    <xs:enumeration value="Right"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="valign" default="Top">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Top"/>
+                    <xs:enumeration value="Center"/>
+                    <xs:enumeration value="Bottom"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="IdleScreenConditionType">
+        <xs:sequence>
+            <xs:element name="conditionType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="alwaysDisplay"/>
+                        <xs:enumeration value="a1reg"/>
+                        <xs:enumeration value="a2reg"/>
+                        <xs:enumeration value="a3reg"/>
+                        <xs:enumeration value="a4reg"/>
+                        <xs:enumeration value="a5reg"/>
+                        <xs:enumeration value="a6reg"/>
+                        <xs:enumeration value="a1voiceMsg"/>
+                        <xs:enumeration value="a2voiceMsg"/>
+                        <xs:enumeration value="a3voiceMsg"/>
+                        <xs:enumeration value="a4voiceMsg"/>
+                        <xs:enumeration value="a5voiceMsg"/>
+                        <xs:enumeration value="a6voiceMsg"/>
+                        <xs:enumeration value="missCall"/>
+                        <xs:enumeration value="callFwded"/>
+                        <xs:enumeration value="dnd"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <!-- The noptional negate element negates the evaluated result to create opposite behavior -->
+        <xs:attribute name="negate" type="xs:boolean" default="false"/>
+    </xs:complexType>
+    <xs:complexType name="SoftKeyType">
+        <xs:sequence>
+            <xs:element name="KeyLabel" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="32"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="KeyAction" minOccurs="1" maxOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- the UseURL option will also require the URL element and is not used now -->
+                        <xs:enumeration value="UseURL"/>
+                        <xs:enumeration value="NewCall"/>
+                        <xs:enumeration value="FwdAll"/>
+                        <xs:enumeration value="CancelFwd"/>
+                        <xs:enumeration value="MissedCalls"/>
+                        <xs:enumeration value="CallReturn"/>
+                        <xs:enumeration value="PhoneBook"/>
+                        <xs:enumeration value="MainMenu"/>
+                        <xs:enumeration value="VoiceMail"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="displayCondition" type="IdleScreenConditionType" minOccurs="0" maxOccurs="1" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
