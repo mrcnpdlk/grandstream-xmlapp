@@ -70,6 +70,7 @@ class Contact extends ModelAbstract
         $nodeElem->appendChild($root->createElement('Email', $this->email));
         $nodeElem->appendChild($root->createElement('Department', $this->department));
         $nodeElem->appendChild($root->createElement('Company', $this->company));
+        $nodeElem->appendChild($root->createElement('Icon', $this->icon));
         $root->appendChild($nodeElem);
 
 
