@@ -112,7 +112,7 @@ class Address extends ModelAbstract
      */
     public function get()
     {
-        $root = new \DOMDocument();
+        $root = new \DOMDocument("1.0","UTF-8");
         // we create a XML Node and store it in a variable called noteElem;
         $noteElem = $root->createElement('Address');
         $noteElem->appendChild($root->createElement('address1', $this->address_1));

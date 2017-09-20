@@ -35,7 +35,7 @@ class AddressBook extends ModelAbstract
      */
     public function get()
     {
-        $root     = new \DOMDocument();
+        $root     = new \DOMDocument("1.0","UTF-8");
         $nodeElem = $root->createElement('AddressBook');
         $root->appendChild($nodeElem);
 

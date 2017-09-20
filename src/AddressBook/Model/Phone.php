@@ -31,7 +31,7 @@ class Phone extends ModelAbstract
      */
     public function get()
     {
-        $root = new \DOMDocument();
+        $root = new \DOMDocument("1.0","UTF-8");
         // we create a XML Node and store it in a variable called noteElem;
         $noteElem = $root->createElement('Phone');
         // createElement takes 2 param also, with 1st param takes the node Name, and 2nd param is node Value

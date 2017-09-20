@@ -22,7 +22,7 @@ class ModelAbstract
      */
     public function get()
     {
-        $oDom = new \DOMDocument("1.0");
+        $oDom = new \DOMDocument("1.0","UTF-8");
 
         return $oDom;
 

@@ -62,7 +62,7 @@ class Contact extends ModelAbstract
      */
     public function get()
     {
-        $root = new \DOMDocument();
+        $root = new \DOMDocument("1.0","UTF-8");
         // we create a XML Node and store it in a variable called nodeElem;
         $nodeElem = $root->createElement('Contact');
         $nodeElem->appendChild($root->createElement('LastName', $this->lastName));
