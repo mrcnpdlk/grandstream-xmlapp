@@ -94,15 +94,15 @@ class Address extends ModelAbstract
     }
 
     /**
-     * @param string      $addres_2
-     * @param string|null $addres_1
+     * @param string      $address_2
+     * @param string|null $address_1
      *
      * @return Address
      */
-    public function setAddress(string $addres_2, string $addres_1 = null)
+    public function setAddress(string $address_2, string $address_1 = null)
     {
-        $this->address_1 = $addres_1;
-        $this->address_2 = $addres_2;
+        $this->address_1 = $address_1;
+        $this->address_2 = $address_2;
 
         return $this;
     }
