@@ -1,15 +1,13 @@
 <?php
-/**
- * Created by Marcin.
- * Date: 20.09.2017
- * Time: 14:06
- */
-
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
-
 
 use mrcnpdlk\Grandstream\XMLApp\AddressBook\ModelAbstract;
 
+/**
+ * Class Address
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
+ */
 class Address extends ModelAbstract
 {
     /**

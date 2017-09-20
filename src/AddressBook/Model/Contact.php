@@ -2,9 +2,13 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-
 use mrcnpdlk\Grandstream\XMLApp\AddressBook\ModelAbstract;
 
+/**
+ * Class Contact
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
+ */
 class Contact extends ModelAbstract
 {
     /**
