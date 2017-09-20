@@ -15,7 +15,7 @@ class XmlValidator
      */
     public $feedErrors = 0;
     /**
-     * Formatted libxml Error details
+     * Formatted libxml Error details 
      *
      * @var string[]
      */
