@@ -1,6 +1,6 @@
 <?php
 
-namespace mrcnpdlk\GSUtils;
+namespace mrcnpdlk\Grandstream\XMLApp;
 
 
 class App

@@ -1,5 +1,5 @@
 {
-  "name": "mrcnpdlk/grandstream-utils",
+  "name": "mrcnpdlk/grandstream-xmlapp",
   "description": "Grandstream telephone utils",
   "keywords": [
     "grandstream",
@@ -18,7 +18,8 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.0",
-    "psr/log": "1.0.2"
+    "psr/log": "1.0.2",
+    "sabre/xml": "~2"
   },
   "require-dev": {
     "monolog/monolog": "^1.23",
@@ -26,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "mrcnpdlk\\GSUtils\\": "src/"
+      "mrcnpdlk\\Grandstream\\XMLApp\\": "src/"
     }
   }
 }

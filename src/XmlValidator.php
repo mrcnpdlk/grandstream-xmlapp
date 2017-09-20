@@ -1,6 +1,6 @@
 <?php
 
-namespace mrcnpdlk\GSUtils;
+namespace mrcnpdlk\Grandstream\XMLApp;
 
 /**
  * Class XmlValidator
@@ -15,7 +15,7 @@ class XmlValidator
      */
     public $feedErrors = 0;
     /**
-     * Formatted libxml Error details 
+     * Formatted libxml Error details
      *
      * @var string[]
      */
