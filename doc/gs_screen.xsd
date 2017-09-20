@@ -11,8 +11,7 @@
                             <xs:element name="DisplayBitmap" type="BitmapType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
                             <xs:element name="DisplayString" type="StringType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
                             <!-- The DisplaySoftKey element apply only to GXP-2020/2010 and is ignored by GXP-2000 -->
-                            <xs:element name="DisplaySoftKey" type="SoftKeyType" minOccurs="0" maxOccurs="12"
-                                        nillable="true"/>
+                            <xs:element name="DisplaySoftKey" type="SoftKeyType" minOccurs="0" maxOccurs="12" nillable="true"/>
                             <!-- The UseDefaultSoftKeys element apply only to GXP-2020/2010 and is ignored by GXP-2000
                             If it is missing by default it is false, when it is true, any DisplaySoftKey elements
                             would be ignored and the system default softkeys would apply -->
