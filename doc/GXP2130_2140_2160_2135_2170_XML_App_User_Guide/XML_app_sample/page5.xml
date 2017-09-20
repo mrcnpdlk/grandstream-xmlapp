@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlapp title="Hotel Service Survey">
+	<view>
+		<section>
+			<text label="4. Personal Information:"></text>
+		</section>
+		
+		<section>
+			<select label="Age" type="single" name=":survey_personal_age">
+				<option text="Under 25" value="under25" />
+				<option text="25 to 50" value="25up"  />
+				<option text="Above 50" value="50up"  />
+				<option text="Refused to Answer" value="0"  />
+			</select>
+			
+			<select label="Stay Reason" type="multiple" name=":survey_personal_reason">
+				<option text="Business" value="business" />
+				<option text="Travel" value="travel"  />
+				<option text="Pleasure/Leisure " value="pleasure"  />
+				<option text="None of Them" value="0"  />
+			</select>
+			<input label="Name" name=":survery_personal_name"></input>
+			<input label="Phone Number" name=":survery_personal_phone" type="number" maxLength="11"></input>
+			<input label="Create Password" name=":survery_personal_password" type="password"></input>
+			<input label="Email" name=":survery_personal_email"></input>
+			<input label="Room Number" name=":survery_personal_room" type="number"></input>
+			<select label="Stay {L[14]}" name=":survery_personal_date" type="multiple">
+				<option text="{L[128]}" value="7" />
+				<option text="{L[129]}" value="1" />
+				<option text="{L[130]}" value="2" />
+				<option text="{L[131]}" value="3" />
+				<option text="{L[132]}" value="4" />
+				<option text="{L[133]}" value="5" />
+				<option text="{L[134]}" value="6" />
+			</select>
+		</section>
+	</view>
+	<Softkeys>
+        <Softkey action="UseURL" label="Next" commandArgs="http://192.168.40.179/page6.xml"/>
+		<Softkey action="UseURL" label="Back" commandArgs="http://192.168.40.179/page4.xml"/>
+		<Softkey action="QuitApp" label="Exit"/>
+    </Softkeys>
+	
+	<Events>
+		<Event state="callStateEnded">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page7.xml"></Action>           
+		</Event>
+		
+		<Event state="resumeFromCallOnhold">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page8.xml"></Action>           
+		</Event>
+	</Events>
+</xmlapp>

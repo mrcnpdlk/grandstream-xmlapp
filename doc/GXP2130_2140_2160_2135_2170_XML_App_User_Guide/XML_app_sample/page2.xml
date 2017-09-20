@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlapp title="Hotel Service Survey">
+	<view>
+		<section>
+			<text label = "1. Overall Room Service Experience:"></text>
+		</section>
+		
+		<section>
+			<select label="Clean" type="single" name=":survey_clean">
+				<option text="Extremely clean" value="5" selected="true"/>
+				<option text="Quite clean" value="4"  />
+				<option text="Moderately clean" value="3"  />
+				<option text="Slightly clean" value="2"  />
+				<option text="Not at all clean" value="1"  />
+			</select>
+			
+			<select label="Comfort" type="single" name=":survey_comfort">
+				<option text="Extremely comfortable" value="5" selected="true"/>
+				<option text="Quite comfortable" value="4"  />
+				<option text="Moderately comfortable" value="3"  />
+				<option text="Slightly comfortable" value="2"  />
+				<option text="Not at all comfortable" value="1"  />
+			</select>
+			
+			<select label="Amenities" type="single" name=":survey_amentities">
+				<option text="Extremely well" value="5" selected="true"/>
+				<option text="Quite well" value="4"  />
+				<option text="Moderately well" value="3"  />
+				<option text="Slightly well" value="2"  />
+				<option text="Not at all well" value="1"  />
+			</select>
+			
+			<select label="Equipment" type="single" name=":survey_equipment">
+				<option text="Extremely well-equipped" value="5" selected="true"/>
+				<option text="Quite well-equipped" value="4"  />
+				<option text="Moderately well-equipped" value="3"  />
+				<option text="Slightly well-equipped" value="2"  />
+				<option text="Not at all well-equipped" value="1"  />
+			</select>
+			
+			
+		</section>
+	</view>
+	<Softkeys>
+        <Softkey action="UseURL" label="Next" commandArgs="http://192.168.40.179/page3.xml"/>
+		<Softkey action="UseURL" label="Back" commandArgs="http://192.168.40.179/page1.xml"/>
+        <Softkey action="QuitApp" label="Exit"/>
+    </Softkeys>
+	
+	<Events>
+		<Event state="callStateEnded">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page7.xml"></Action>           
+		</Event>
+
+		<Event state="resumeFromCallOnhold">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page8.xml"></Action>           
+		</Event>
+	</Events>
+</xmlapp>

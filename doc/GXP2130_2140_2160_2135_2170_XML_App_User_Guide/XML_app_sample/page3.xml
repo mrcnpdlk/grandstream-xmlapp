@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlapp title="Hotel Service Survey">
+	<view>
+		<section>
+			<text label = "2. Dining Facilities and Service:"></text>
+		</section>
+		
+		<section>
+			<select label="Dining experience" type="multiple" name=":survey_dining_experience">
+				<option text="Breakfast" value="breakfast" />
+				<option text="Lunch" value="lunch"  />
+				<option text="Dinner" value="dinner"  />
+				<option text="Banquet" value="banquet"  />
+				<option text="Room Service" value="roomService"  />
+				<option text="None of Them" value="none"  />
+			</select>
+			
+			<select label="Dining Service" type="single" name=":survey_dining_serive">
+				<option text="Extremely delicious" value="5" selected="true"/>
+				<option text="Quite delicious" value="4"  />
+				<option text="Moderately delicious" value="3"  />
+				<option text="Slightly delicious" value="2"  />
+				<option text="Not at all delicious" value="1"  />
+			</select>
+		</section>
+		
+		<section>
+		    <text label="If you ordered room service: "></text>
+			<select label="Timeliness of order" type="single" name=":survey_room_service_timeliness">
+				<option text="Excellent" value="5" selected="true" />
+				<option text="Very good" value="4"  />
+				<option text="Good" value="3"  />
+				<option text="Fair" value="2"  />
+				<option text="Poor" value="1"  />
+			</select>		
+			<select label="Food Temperature" type="single" name=":survey_room_service_temprature">
+				<option text="Excellent" value="5" selected="true" />
+				<option text="Very good" value="4"  />
+				<option text="Good" value="3"  />
+				<option text="Fair" value="2"  />
+				<option text="Poor" value="1"  />
+			</select>
+		</section>
+	</view>
+	<Softkeys>
+        <Softkey action="UseURL" label="Next" commandArgs="http://192.168.40.179/page4.xml"/>
+		<Softkey action="UseURL" label="Back" commandArgs="http://192.168.40.179/page2.xml"/>
+        <Softkey action="QuitApp" label="Exit"/>
+    </Softkeys>
+	
+	<Events>
+		<Event state="callStateEnded">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page7.xml"></Action>           
+		</Event>
+		
+		<Event state="resumeFromCallOnhold">        
+			<Action action="UseURL" commandArgs="http://192.168.40.179/page8.xml"></Action>           
+		</Event>
+	</Events>
+</xmlapp>
