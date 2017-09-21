@@ -71,7 +71,7 @@ class Contact extends ElementAbstract
         $oXml->addChild('Icon', $this->icon);
 
         static::xml_adopt($oXml, $this->phone->getXmlObject());
-        
+
         if ($this->address) {
             static::xml_adopt($oXml, $this->address->getXmlObject());
         } else {
