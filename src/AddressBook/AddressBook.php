@@ -3,6 +3,7 @@
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook;
 
 use mrcnpdlk\Grandstream\XMLApp\AddressBook\Model\Contact;
+use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
 use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
 
 /**
@@ -10,7 +11,7 @@ use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook
  */
-class AddressBook extends ModelAbstract
+class AddressBook extends ElementAbstract
 {
 
     /**
@@ -32,19 +33,15 @@ class AddressBook extends ModelAbstract
     }
 
     /**
-     * @return \DOMDocument
+     * @return \SimpleXMLElement
      */
-    public function get()
+    public function getXmlObject()
     {
-        $root     = new \DOMDocument("1.0","UTF-8");
-        $nodeElem = $root->createElement('AddressBook');
-        $root->appendChild($nodeElem);
-
+        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><AddressBook></AddressBook>');
         foreach ($this->tContacts as $contact) {
-            $nodeContact = $root->importNode($contact->get()->documentElement, true);
-            $root->documentElement->appendChild($nodeContact);
+            static::xml_adopt($oXml, $contact->getXmlObject());
         }
 
-        return $root;
+        return $oXml;
     }
 }

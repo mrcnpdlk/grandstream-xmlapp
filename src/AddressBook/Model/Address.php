@@ -1,14 +1,15 @@
 <?php
+
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
+use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
 
 /**
  * Class Address
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
  */
-class Address extends ModelAbstract
+class Address extends ElementAbstract
 {
     /**
      * @var string
@@ -108,23 +109,19 @@ class Address extends ModelAbstract
     }
 
     /**
-     * @return \DOMDocument
+     * @return \SimpleXMLElement
      */
-    public function get()
+    public function getXmlObject()
     {
-        $root = new \DOMDocument("1.0","UTF-8");
-        // we create a XML Node and store it in a variable called noteElem;
-        $noteElem = $root->createElement('Address');
-        $noteElem->appendChild($root->createElement('address1', $this->address_1));
-        $noteElem->appendChild($root->createElement('address2', $this->address_2));
-        $noteElem->appendChild($root->createElement('city', $this->city));
-        $noteElem->appendChild($root->createElement('state', $this->state));
-        $noteElem->appendChild($root->createElement('zipcode', $this->zipCode));
-        $noteElem->appendChild($root->createElement('country', $this->country));
+        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Address></Address>');
+        $oXml->addChild('address1', $this->address_1);
+        $oXml->addChild('address2', $this->address_2);
+        $oXml->addChild('city', $this->city);
+        $oXml->addChild('state', $this->state);
+        $oXml->addChild('zipcode', $this->zipCode);
+        $oXml->addChild('country', $this->country);
 
-        $root->appendChild($noteElem);
-
-        return $root;
+        return $oXml;
 
     }
 }

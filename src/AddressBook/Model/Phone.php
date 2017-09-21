@@ -2,14 +2,14 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
+use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
 
 /**
  * Class Phone
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
  */
-class Phone extends ModelAbstract
+class Phone extends ElementAbstract
 {
     /**
      * @var string
@@ -27,21 +27,16 @@ class Phone extends ModelAbstract
     }
 
     /**
-     * @return \DOMDocument
+     * @return \SimpleXMLElement
      */
     public function get()
     {
-        $root = new \DOMDocument("1.0","UTF-8");
-        // we create a XML Node and store it in a variable called noteElem;
-        $noteElem = $root->createElement('Phone');
-        // createElement takes 2 param also, with 1st param takes the node Name, and 2nd param is node Value
-        $toElem = $root->createElement('phonenumber', $this->phoneNumber);
-        $noteElem->appendChild($toElem);
-        $toElem = $root->createElement('accountindex', $this->accountIndex);
-        $noteElem->appendChild($toElem);
-        $root->appendChild($noteElem);
+        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Phone></Phone>');
+        $oXml->addChild('phonenumber', $this->phoneNumber);
+        $oXml->addChild('accountindex', $this->accountIndex);
 
-        return $root;
+        return $oXml;
+
     }
 
 }

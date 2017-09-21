@@ -46,22 +46,39 @@ class DisplayAbstract extends ModelAbstract
      */
     protected $sColorShape;
 
+    /**
+     * DisplayAbstract constructor.
+     *
+     * @param Point|null     $oPoint
+     * @param Rectangle|null $oRectangle
+     */
     public function __construct(Point $oPoint = null, Rectangle $oRectangle = null)
     {
         $this->oPoint     = $oPoint ?? new Point(0, 0);
         $this->oRectangle = $oRectangle ?? new Rectangle(0, 0);
     }
 
+    /**
+     * @return Point
+     */
     public function getPoint()
     {
         return $this->oPoint;
     }
 
+    /**
+     * @return Rectangle
+     */
     public function getRectangle()
     {
         return $this->oRectangle;
     }
 
+    /**
+     * @param int $iColorTone
+     *
+     * @return $this
+     */
     public function setColorBg(int $iColorTone)
     {
         $this->sColorBg = $this->getMonoColor($iColorTone);
@@ -69,11 +86,19 @@ class DisplayAbstract extends ModelAbstract
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getColorBg()
     {
         return $this->sColorBg ?? $this->getMonoColor();
     }
 
+    /**
+     * @param int $iColorTone
+     *
+     * @return $this
+     */
     public function setColorBorder(int $iColorTone)
     {
         $this->sColorBorder = $this->getMonoColor($iColorTone);
@@ -81,11 +106,19 @@ class DisplayAbstract extends ModelAbstract
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getColorBorder()
     {
         return $this->sColorBorder ?? $this->getMonoColor(100);
     }
 
+    /**
+     * @param int $iColorTone
+     *
+     * @return $this
+     */
     public function setColorFont(int $iColorTone)
     {
         $this->sColorFont = $this->getMonoColor($iColorTone);
@@ -93,6 +126,9 @@ class DisplayAbstract extends ModelAbstract
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getColorFont()
     {
         return $this->sColorFont ?? $this->getMonoColor(100);

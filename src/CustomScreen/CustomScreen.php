@@ -3,6 +3,7 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen;
 
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\Exception;
 use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
 
@@ -33,7 +34,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP2120':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(320, 160),
+                    new Rectangle(320, 160),
                     22,
                     90,
                     4);
@@ -41,7 +42,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP2110':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(240, 120),
+                    new Rectangle(240, 120),
                     22,
                     57,
                     3);
@@ -49,7 +50,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP2100':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(180, 90),
+                    new Rectangle(180, 90),
                     16,
                     57,
                     3);
@@ -57,7 +58,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP2124':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(240, 120),
+                    new Rectangle(240, 120),
                     22,
                     57,
                     4);
@@ -67,7 +68,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP1450':
                 $this->iMaxScreens = 2;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(180, 60),
+                    new Rectangle(180, 60),
                     15,
                     57,
                     3);
@@ -75,7 +76,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP140x':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(180, 60),
+                    new Rectangle(180, 60),
                     13,
                     0,
                     3);
@@ -83,7 +84,7 @@ class CustomScreen extends ModelAbstract
             case 'GXP116x':
                 $this->iMaxScreens = 4;
                 $this->oDisplay    = new LCDDisplay(
-                    new Box(180, 60),
+                    new Rectangle(180, 60),
                     13,
                     0,
                     3);

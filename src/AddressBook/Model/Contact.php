@@ -2,14 +2,14 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
+use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
 
 /**
  * Class Contact
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
  */
-class Contact extends ModelAbstract
+class Contact extends ElementAbstract
 {
     /**
      * @var string
@@ -58,35 +58,28 @@ class Contact extends ModelAbstract
     }
 
     /**
-     * @return \DOMDocument
+     * @return \SimpleXMLElement
      */
-    public function get()
+    public function getXmlObject()
     {
-        $root = new \DOMDocument("1.0","UTF-8");
-        // we create a XML Node and store it in a variable called nodeElem;
-        $nodeElem = $root->createElement('Contact');
-        $nodeElem->appendChild($root->createElement('LastName', $this->lastName));
-        $nodeElem->appendChild($root->createElement('FirstName', $this->firstName));
-        $nodeElem->appendChild($root->createElement('Email', $this->email));
-        $nodeElem->appendChild($root->createElement('Department', $this->department));
-        $nodeElem->appendChild($root->createElement('Company', $this->company));
-        $nodeElem->appendChild($root->createElement('Icon', $this->icon));
-        $root->appendChild($nodeElem);
+        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Contact></Contact>');
+        $oXml->addChild('LastName', $this->lastName);
+        $oXml->addChild('FirstName', $this->firstName);
+        $oXml->addChild('Email', $this->email);
+        $oXml->addChild('Department', $this->department);
+        $oXml->addChild('Company', $this->company);
+        $oXml->addChild('Icon', $this->icon);
 
-
-        $nodePhone = $root->importNode($this->phone->get()->documentElement, true);
-        $root->documentElement->appendChild($nodePhone);
-
+        static::xml_adopt($oXml, $this->phone->getXmlObject());
+        
         if ($this->address) {
-            $nodeAddress = $root->importNode($this->address->get()->documentElement, true);
-            $root->documentElement->appendChild($nodeAddress);
+            static::xml_adopt($oXml, $this->address->getXmlObject());
         } else {
-            $nodeElem->appendChild($root->createElement('Address'));
-            $root->appendChild($nodeElem);
+            $oXml->addChild('Address');
         }
 
 
-        return $root;
+        return $oXml;
     }
 
 

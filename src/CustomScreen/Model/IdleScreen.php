@@ -73,7 +73,7 @@ class IdleScreen extends ModelAbstract
     /**
      * @return \SimpleXMLElement
      */
-    public function getXml()
+    public function getXmlObject()
     {
         $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><IdleScreen></IdleScreen>');
         if ($this->sScrType) {
@@ -81,7 +81,7 @@ class IdleScreen extends ModelAbstract
         }
         $oXml->addChild('ShowStatusLine', $this->isStatusLine ? 'true' : 'false');
         foreach ($this->tDisplays as $oDisplay) {
-            static::xml_adopt($oXml, $oDisplay->getXml());
+            static::xml_adopt($oXml, $oDisplay->getXmlObject());
         }
         $softKeys = $oXml->addChild('SoftKeys');
         foreach ($this->tSoftKeys as $oSoftKey) {
