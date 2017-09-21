@@ -5,17 +5,14 @@
  * Time: 15:40
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
+namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\Display;
 
 
 use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Point;
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\DisplayAbstract;
 
-class DisplayBitmap extends ModelAbstract
+class DisplayBitmap extends DisplayAbstract
 {
-    /**
-     * @var Point
-     */
-    private $oPoint;
     /**
      * @var boolean
      */
@@ -32,7 +29,7 @@ class DisplayBitmap extends ModelAbstract
 
     public function __construct(Point $oPoint = null, string $sBitmap, bool $isFile)
     {
-        $this->oPoint  = $oPoint ?? new Point(0, 0);
+        parent::__construct($oPoint);
         $this->sBitmap = $sBitmap;
         $this->isFile  = $isFile ? "true" : "false";
         $this->isFlash = "false";
@@ -45,8 +42,8 @@ class DisplayBitmap extends ModelAbstract
 
         $oXml->addAttribute('isfile', $this->isFile);
         $oXml->addAttribute('isflash', $this->isFlash);
-        $oXml->addChild('X', $this->oPoint->getX());
-        $oXml->addChild('Y', $this->oPoint->getX());
+        $oXml->addChild('X', $this->getPoint()->getX());
+        $oXml->addChild('Y', $this->getPoint()->getX());
         $oXml->addChild('Bitmap', $this->sBitmap);
 
         return $oXml;
