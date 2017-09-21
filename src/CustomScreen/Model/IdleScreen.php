@@ -25,10 +25,20 @@ class IdleScreen extends ModelAbstract
     private $isStatusLine;
 
     /**
-     * @var \SimpleXMLElement[]
+     * @var DisplayAbstract[]
      */
     private $tDisplays = [];
+    /**
+     * @var SoftKey[]
+     */
+    private $tSoftKeys = [];
 
+    /**
+     * IdleScreen constructor.
+     *
+     * @param string $sScrType
+     * @param bool   $isStatusLine
+     */
     public function __construct(string $sScrType = IdleScreen::SCR_TYPE_DEFAULT, bool $isStatusLine = true)
     {
         $this->sScrType     = $sScrType;
@@ -37,17 +47,32 @@ class IdleScreen extends ModelAbstract
     }
 
     /**
-     * @param \SimpleXMLElement $oDisplay
+     * @param mixed $oDisplay
      *
      * @return $this
      */
-    public function addDisplay(\SimpleXMLElement $oDisplay)
+    public function addDisplay(DisplayAbstract $oDisplay)
     {
         $this->tDisplays[] = $oDisplay;
 
         return $this;
     }
 
+    /**
+     * @param SoftKey $oSoftKey
+     *
+     * @return $this
+     */
+    public function addSoftKey(SoftKey $oSoftKey)
+    {
+        $this->tSoftKeys[] = $oSoftKey;
+
+        return $this;
+    }
+
+    /**
+     * @return \SimpleXMLElement
+     */
     public function getXml()
     {
         $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><IdleScreen></IdleScreen>');
@@ -56,9 +81,12 @@ class IdleScreen extends ModelAbstract
         }
         $oXml->addChild('ShowStatusLine', $this->isStatusLine ? 'true' : 'false');
         foreach ($this->tDisplays as $oDisplay) {
-            static::xml_adopt($oXml, $oDisplay);
+            static::xml_adopt($oXml, $oDisplay->getXml());
         }
-        $oXml->addChild('Softkeys');
+        $softKeys = $oXml->addChild('SoftKeys');
+        foreach ($this->tSoftKeys as $oSoftKey) {
+            static::xml_adopt($softKeys, $oSoftKey->getXml());
+        }
 
         return $oXml;
     }

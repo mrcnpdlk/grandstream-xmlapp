@@ -6,6 +6,48 @@ namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
 class ModelAbstract
 {
     /**
+     * Displayed on idle screen, weather, stock, currency screen, IP address screen (for GXP140x)
+     */
+    const COND_TYPE_SUBSCREEN = 'SubScreen';
+    /**
+     * When XML Application is launched
+     */
+    const COND_TYPE_XMLAPP = 'XmlApp';
+    /**
+     * Displayed when call queue feature is used with signOut GXE5028
+     */
+    const COND_TYPE_SIGNIN  = 'signIn';
+    const COND_TYPE_SIGNOUT = 'signOut';
+    /**
+     * Displayed in onhook dialing state when number is entered
+     */
+    const COND_TYPE_BACKSPACE = 'backSpace';
+    /**
+     * Displayed when there is new missed call
+     */
+    const COND_TYPE_MISSCALL = 'missCall';
+    /**
+     * Displayed when account1 is registered and "Enable Call Feature" is set to "Yes
+     */
+    const COND_TYPE_HASFCL = 'hasFowardedCallLog';
+    /**
+     * Displayed when account1 has Call Forward All activated
+     */
+    const COND_TYPE_CF = 'callFwded';
+    /**
+     * Displayed when there is dialed call
+     */
+    const COND_TYPE_HASDCL = 'hasDialedCalllog';
+    /**
+     * Displayed when there is new voicemail. Usually only used on GXP140x for Voicemail softkey display
+     */
+    const COND_TYPE_HASVM = 'hasVoiceMail';
+    /**
+     * Default display if not specified
+     */
+    const COND_TYPE_ALWAYS = 'alwaysDisplay';
+
+    /**
      * @param \SimpleXMLElement $root
      * @param \SimpleXMLElement $new
      * @param string|null       $namespace
