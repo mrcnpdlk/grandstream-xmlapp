@@ -2,12 +2,12 @@
 ########### For 1.0.3.30 and 1.0.4.9/1.0.4.10/1.0.4.13 Firmware Verions    #############
 ########################################################################################
 
-On the GXP21xx/14xx, if “Use Custom filename” is set to “No”, the XML file name must be gs_idle_screen.xml (default file name).
+On the GXP21xx/14xx, if â€œUse Custom filenameâ€ is set to â€œNoâ€, the XML file name must be gs_idle_screen.xml (default file name).
 
 
 ########################################################################################
 ####################### For 1.0.4.23/1.0.5.x Firmware Verion  ##########################
 ########################################################################################
 
-On the GXP21xx/14xx/116x, if “Use Custom filename” is set to “No”, the XML file name must be idle_screen.xml (default file name).
+On the GXP21xx/14xx/116x, if â€œUse Custom filenameâ€ is set to â€œNoâ€, the XML file name must be idle_screen.xml (default file name).
  

@@ -3,11 +3,9 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen;
 
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\BitmapType;
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\IdleScreenConditionType;
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\Screen;
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\SoftKeyType;
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\StringType;
+use mrcnpdlk\Grandstream\XMLApp\Exception;
+use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
+
 
 /**
  * Class CustomScreen
@@ -17,39 +15,89 @@ use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\StringType;
 class CustomScreen extends ModelAbstract
 {
     /**
-     * @var Screen
+     * @var int
      */
-    private $oScreen;
+    private $iMaxScreens = 0;
     /**
-     * @var BitmapType
+     * @var LCDDisplay
      */
-    private $oBitmapType;
+    private $oDisplay;
     /**
-     * @var StringType
+     * @var \SimpleXMLElement
      */
-    private $oStringType;
-    /**
-     * @var IdleScreenConditionType
-     */
-    private $oIdleScreenConditionType;
-    /**
-     * @var SoftKeyType
-     */
-    private $oSoftKeyType;
+    public $oDefXml;
 
-    public function get()
+    public function __construct(string $model)
     {
-        $root = new \DOMDocument("1.0", "UTF-8");
-
-        if ($this->oScreen) {
-            $nodeAddress = $root->importNode($this->oScreen->get()->documentElement, true);
-            $root->documentElement->appendChild($nodeAddress);
-        } else {
-            $nodeElem = $root->createElement('Screen');
-            $root->appendChild($nodeElem);
+        switch (strtoupper($model)) {
+            case 'GXP2120':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(320, 160),
+                    22,
+                    90,
+                    4);
+                break;
+            case 'GXP2110':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(240, 120),
+                    22,
+                    57,
+                    3);
+                break;
+            case 'GXP2100':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(180, 90),
+                    16,
+                    57,
+                    3);
+                break;
+            case 'GXP2124':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(240, 120),
+                    22,
+                    57,
+                    4);
+                $file = __DIR__ . '/Adapter/GXP21xx_16xx_14xx_116x/DefXML/2124idle_screen.xml';
+                $this->oDefXml = new \SimpleXMLElement(file_get_contents($file));
+                break;
+            case 'GXP1450':
+                $this->iMaxScreens = 2;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(180, 60),
+                    15,
+                    57,
+                    3);
+                break;
+            case 'GXP140x':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(180, 60),
+                    13,
+                    0,
+                    3);
+                break;
+            case 'GXP116x':
+                $this->iMaxScreens = 4;
+                $this->oDisplay    = new LCDDisplay(
+                    new Box(180, 60),
+                    13,
+                    0,
+                    3);
+                break;
+            case 'GXP2130':
+            case 'GXP2140':
+            case 'GXP2160':
+            case 'GXP2135':
+            case 'GXP2170':
+                break;
+            default:
+                throw new Exception(sprintf('Model %s not defined', $model));
+                break;
         }
-
-
-        return $root;
     }
+
 }

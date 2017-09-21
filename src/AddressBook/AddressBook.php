@@ -3,6 +3,7 @@
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook;
 
 use mrcnpdlk\Grandstream\XMLApp\AddressBook\Model\Contact;
+use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
 
 /**
  * Class AddressBook

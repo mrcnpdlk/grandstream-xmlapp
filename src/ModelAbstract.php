@@ -1,6 +1,6 @@
 <?php
 
-namespace mrcnpdlk\Grandstream\XMLApp\AddressBook;
+namespace mrcnpdlk\Grandstream\XMLApp;
 
 
 class ModelAbstract
