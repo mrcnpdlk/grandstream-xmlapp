@@ -55,6 +55,31 @@ class ModelAbstract
     const COND_TYPE_ALWAYS = 'alwaysDisplay';
 
     /**
+     * @param \SimpleXMLElement $root
+     * @param \SimpleXMLElement $new
+     * @param string|null       $namespace
+     */
+    public static function xml_adopt(\SimpleXMLElement $root, \SimpleXMLElement $new, string $namespace = null)
+    {
+        // first add the new node
+        // NOTE: addChild does NOT escape "&" ampersands in (string)$new !!!
+        //  replace them or use htmlspecialchars(). see addchild docs comments.
+        $node = $root->addChild($new->getName(), (string)$new, $namespace);
+        // add any attributes for the new node
+        foreach ($new->attributes() as $attr => $value) {
+            $node->addAttribute($attr, $value);
+        }
+        // get all namespaces, include a blank one
+        $namespaces = array_merge([null], $new->getNameSpaces(true));
+        // add any child nodes, including optional namespace
+        foreach ($namespaces as $space) {
+            foreach ($new->children($space) as $child) {
+                static::xml_adopt($node, $child, $space);
+            }
+        }
+    }
+
+    /**
      * @param int|null $tone Grey tone, 0 - white, 100 - black, null - NONE
      *
      * @return string
