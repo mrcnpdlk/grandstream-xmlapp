@@ -9,19 +9,21 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
+use mrcnpdlk\Grandstream\XMLApp\AddressBook\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
+
 
 /**
  * Class Contact
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
  */
-class Contact extends ElementAbstract
+class Contact implements ModelInterface
 {
     /**
      * @var string
@@ -34,11 +36,11 @@ class Contact extends ElementAbstract
     /**
      * @var Address|null
      */
-    private $address = null;
+    private $oAddress = null;
     /**
      * @var Phone
      */
-    private $phone;
+    private $oPhone;
     /**
      * @var string|null
      */
@@ -61,33 +63,32 @@ class Contact extends ElementAbstract
     public function __construct(string $lastName, Phone $oPhone)
     {
         $this->lastName = $lastName;
-        $this->phone    = $oPhone;
+        $this->oPhone   = $oPhone;
     }
 
-    public function setAddress(Address $oAddress)
+    public function setOAddress(Address $oAddress)
     {
-        $this->address = $oAddress;
+        $this->oAddress = $oAddress;
     }
 
     /**
      * @return \SimpleXMLElement
      */
-    public function getXmlObject()
+    public function getXml(): MyXML
     {
-        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Contact></Contact>');
-        $oXml->addChild('LastName', $this->lastName);
-        $oXml->addChild('FirstName', $this->firstName);
-        $oXml->addChild('Email', $this->email);
-        $oXml->addChild('Department', $this->department);
-        $oXml->addChild('Company', $this->company);
-        $oXml->addChild('Icon', $this->icon);
+        $oXml = new MyXML('Contact');
+        $oXml->asObject()->addChild('LastName', $this->lastName);
+        $oXml->asObject()->addChild('FirstName', $this->firstName);
+        $oXml->asObject()->addChild('Email', $this->email);
+        $oXml->asObject()->addChild('Department', $this->department);
+        $oXml->asObject()->addChild('Company', $this->company);
+        $oXml->asObject()->addChild('Icon', $this->icon);
 
-        static::xml_adopt($oXml, $this->phone->getXmlObject());
 
-        if ($this->address) {
-            static::xml_adopt($oXml, $this->address->getXmlObject());
-        } else {
-            $oXml->addChild('Address');
+        $oXml->insertChild($this->oPhone->getXml()->asObject());
+
+        if ($this->oAddress) {
+            $oXml->insertChild($this->oAddress->getXml()->asObject());
         }
 
 

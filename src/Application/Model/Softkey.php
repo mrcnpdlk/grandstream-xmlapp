@@ -43,7 +43,6 @@ class Softkey implements ModelInterface
      * @var string
      */
     private $sCommandArgs;
-
     /**
      * Only for action=Dial.
      * This specifies the account index to dial out the call from, starting from 0 for account 1

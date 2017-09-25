@@ -14,14 +14,16 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook\Model;
 
-use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
+use mrcnpdlk\Grandstream\XMLApp\AddressBook\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
+
 
 /**
  * Class Address
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook\Model
  */
-class Address extends ElementAbstract
+class Address implements ModelInterface
 {
     /**
      * @var string
@@ -48,6 +50,11 @@ class Address extends ElementAbstract
      */
     private $country;
 
+    /**
+     * Address constructor.
+     *
+     * @param string $address
+     */
     public function __construct(string $address)
     {
         $this->address_1 = $address;
@@ -121,17 +128,17 @@ class Address extends ElementAbstract
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return MyXML
      */
-    public function getXmlObject()
+    public function getXml() : MyXML
     {
-        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><Address></Address>');
-        $oXml->addChild('address1', $this->address_1);
-        $oXml->addChild('address2', $this->address_2);
-        $oXml->addChild('city', $this->city);
-        $oXml->addChild('state', $this->state);
-        $oXml->addChild('zipcode', $this->zipCode);
-        $oXml->addChild('country', $this->country);
+        $oXml = new MyXML('Address');
+        $oXml->asObject()->addChild('address1', $this->address_1);
+        $oXml->asObject()->addChild('address2', $this->address_2);
+        $oXml->asObject()->addChild('city', $this->city);
+        $oXml->asObject()->addChild('state', $this->state);
+        $oXml->asObject()->addChild('zipcode', $this->zipCode);
+        $oXml->asObject()->addChild('country', $this->country);
 
         return $oXml;
 
