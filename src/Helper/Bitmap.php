@@ -15,7 +15,11 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Helper;
 
-
+/**
+ * Class Bitmap
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Helper
+ */
 class Bitmap
 {
     /**

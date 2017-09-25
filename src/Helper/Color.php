@@ -15,7 +15,11 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Helper;
 
-
+/**
+ * Class Color
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Helper
+ */
 class Color
 {
 
@@ -24,13 +28,18 @@ class Color
      */
     private $sColor;
 
+    /**
+     * Color constructor.
+     *
+     * @param int|null $tone 0-100% greyscale tone. NULL = None
+     */
     public function __construct(int $tone = null)
     {
         $this->sColor = $this->toGreyScale($tone);
     }
 
     /**
-     * @param int|null $tone
+     * @param int|null $tone 0-100% greyscale tone. NULL = None
      *
      * @return string
      */
@@ -68,6 +77,9 @@ class Color
         return $tTones[$index];
     }
 
+    /**
+     * @return string
+     */
     public function get()
     {
         return $this->sColor;

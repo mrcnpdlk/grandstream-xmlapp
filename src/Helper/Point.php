@@ -30,6 +30,12 @@ class Point
      */
     private $iY;
 
+    /**
+     * Point constructor.
+     *
+     * @param int $x
+     * @param int $y
+     */
     public function __construct(int $x, int $y)
     {
         $this->iX = $x;
