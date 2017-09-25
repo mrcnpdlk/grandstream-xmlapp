@@ -173,7 +173,7 @@ class Input implements ModelInterface
         $oXml->asObject()->addAttribute('value', $this->sValue);
         $oXml->asObject()->addAttribute('type', $this->sType);
         if ($this->oStyles) {
-            $oXml->insertChild($this->oStyles->getXml());
+            $oXml->insertChild($this->oStyles->getXml()->asObject());
         }
 
 

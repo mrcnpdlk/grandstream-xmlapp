@@ -21,9 +21,39 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
 class Contents implements ModelInterface
 {
 
+    /**
+     * @var ModelInterface[]
+     */
+    private $tElements;
+
+    /**
+     * Contents constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * @param ModelInterface $oElement
+     *
+     * @return Contents
+     */
+    public function addElement(ModelInterface $oElement)
+    {
+        $this->tElements[] = $oElement;
+
+        return $this;
+    }
+
+    /**
+     * @return MyXML
+     */
     public function getXml(): MyXML
     {
         $oXml = new MyXML('Contents');
+        foreach ($this->tElements as $oElement) {
+            $oXml->insertChild($oElement->getXml()->asObject());
+        }
 
         return $oXml;
     }
