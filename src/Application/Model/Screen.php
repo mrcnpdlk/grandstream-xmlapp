@@ -32,6 +32,10 @@ class Screen implements ModelInterface
      * @var Page
      */
     private $oPage;
+    /**
+     * @var Event[]
+     */
+    private $tEvents = [];
 
     public function __construct(Page $oPage)
     {
@@ -50,13 +54,26 @@ class Screen implements ModelInterface
         return $this;
     }
 
+    public function addEvent(Event $oEvent)
+    {
+        $this->tEvents[] = $oEvent;
+
+        return $this;
+    }
+
     /**
      * @return MyXML
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('Page');
+        $oXml = new MyXML('Screen');
         $oXml->insertChild($this->getPage()->getXml()->asObject());
+
+        $oEvents = new MyXML('Events');
+        foreach ($this->tEvents as $oEvent) {
+            $oEvents->insertChild($oEvent->getXml()->asObject());
+        }
+        $oXml->insertChild($oEvents->asObject());
 
         return $oXml;
     }
