@@ -1,0 +1,58 @@
+<!--
+  ~ Grandstream-XMLApp
+  ~
+  ~ Copyright (c) 2017 pudelek.org.pl
+  ~
+  ~ @license MIT License (MIT)
+  ~
+  ~ For the full copyright and license information, please view source file
+  ~ that is bundled with this package in the file LICENSE
+  ~
+  ~ @author Marcin Pudełek <marcin@pudelek.org.pl>
+  -->
+
+<Screen>
+
+    <LeftStatusBar>
+        <Layout width="100">
+            <DisplayList>
+                <X>0</X>
+                <Y>0</Y>
+            </DisplayList>
+            <DisplayString font="unifont" width="30" height="10" halign="left" color="Black" bgcolor="White">
+                <X>X location</X>
+                <Y>Y location </Y>
+                <DisplayStr>Display String</DisplayStr>
+            </DisplayString>
+        </Layout>
+        <Account height="20">
+            <DisplayElement>
+                <DisplayBitmap> Image information here </DisplayBitmap>
+            </DisplayElement>
+        </Account>
+    </LeftStatusBar>
+
+    <SoftkeyBar>
+    </SoftkeyBar>
+
+    <!-- Main Content Area -->
+    <Page>
+
+        <ShowStatusLine>true</ShowStatusLine>
+
+        <Contents>
+            <!-- Add contents  -->
+        </Contents>
+
+        <SoftKeys>
+            <SoftKey action="QuitApp" label="Exit"/>
+            <SoftKey action="UseURL" label="Akcja" commandArgs="xmlapp_site.php"/>
+        </SoftKeys>
+
+    </Page>
+
+    <Events>
+        <!-- Add Events -->
+    </Events>
+
+</Screen>
