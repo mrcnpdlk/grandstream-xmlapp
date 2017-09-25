@@ -18,22 +18,15 @@
  * Time: 19:28
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
+namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model\Components;
 
 
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Point;
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Rectangle;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 
-class DisplayAbstract extends ModelAbstract
+class DisplayAbstract
 {
-    const FONT_BOLD    = 'bold';
-    const FONT_UNIFONT = 'unifont';
-
-    const HOR_ALIGN_CENTER = 'center';
-    const HOR_ALIGN_LEFT   = 'left';
-    const HOR_ALIGN_RIGHT  = 'right';
-
-
     /**
      * @var Point
      */
@@ -43,21 +36,21 @@ class DisplayAbstract extends ModelAbstract
      */
     protected $oRectangle;
     /**
-     * @var string
+     * @var Color
      */
-    protected $sColorBg;
+    protected $oColorBg;
     /**
-     * @var string
+     * @var Color
      */
-    protected $sColorBorder;
+    protected $oColorBorder;
     /**
-     * @var string
+     * @var Color
      */
-    protected $sColorFont;
+    protected $oColorFont;
     /**
-     * @var string
+     * @var Color
      */
-    protected $sColorShape;
+    protected $oColorShape;
 
     /**
      * DisplayAbstract constructor.
@@ -88,62 +81,62 @@ class DisplayAbstract extends ModelAbstract
     }
 
     /**
-     * @param int $iColorTone
+     * @param Color $oColor
      *
      * @return $this
      */
-    public function setColorBg(int $iColorTone)
+    public function setColorBg(Color $oColor)
     {
-        $this->sColorBg = $this->getMonoColor($iColorTone);
+        $this->oColorBg = $oColor;
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return Color
      */
     public function getColorBg()
     {
-        return $this->sColorBg ?? $this->getMonoColor();
+        return $this->sColorBg ?? new Color();
     }
 
     /**
-     * @param int $iColorTone
+     * @param Color $oColor
      *
      * @return $this
      */
-    public function setColorBorder(int $iColorTone)
+    public function setColorBorder(Color $oColor)
     {
-        $this->sColorBorder = $this->getMonoColor($iColorTone);
+        $this->oColorBorder = $oColor;
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return Color
      */
     public function getColorBorder()
     {
-        return $this->sColorBorder ?? $this->getMonoColor(100);
+        return $this->sColorBorder ?? new Color(100);
     }
 
     /**
-     * @param int $iColorTone
+     * @param Color $oColor
      *
      * @return $this
      */
-    public function setColorFont(int $iColorTone)
+    public function setColorFont(Color $oColor)
     {
-        $this->sColorFont = $this->getMonoColor($iColorTone);
+        $this->oColorFont = $oColor;
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return Color
      */
     public function getColorFont()
     {
-        return $this->sColorFont ?? $this->getMonoColor(100);
+        return $this->oColorFont ?? new Color(100);
     }
 }

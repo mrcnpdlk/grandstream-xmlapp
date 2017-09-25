@@ -9,10 +9,14 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
+
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 
 /**
@@ -20,13 +24,8 @@ namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
-class IdleScreen extends ModelAbstract
+class IdleScreen implements ModelInterface
 {
-    const SCR_TYPE_DEFAULT  = null;
-    const SCR_TYPE_WEATHER  = 'weatherShow';
-    const SCR_TYPE_STOCK    = 'stockShow';
-    const SCR_TYPE_CURRENCY = 'currencyShow';
-
     /**
      * @var string|null
      */
@@ -37,7 +36,7 @@ class IdleScreen extends ModelAbstract
     private $isStatusLine;
 
     /**
-     * @var DisplayAbstract[]
+     * @var ModelInterface[]
      */
     private $tDisplays = [];
     /**
@@ -51,7 +50,7 @@ class IdleScreen extends ModelAbstract
      * @param string $sScrType
      * @param bool   $isStatusLine
      */
-    public function __construct(string $sScrType = IdleScreen::SCR_TYPE_DEFAULT, bool $isStatusLine = true)
+    public function __construct(string $sScrType = ModelConstant::SCREEN_TYPE_DEFAULT, bool $isStatusLine = true)
     {
         $this->sScrType     = $sScrType;
         $this->isStatusLine = $isStatusLine;
@@ -63,7 +62,7 @@ class IdleScreen extends ModelAbstract
      *
      * @return $this
      */
-    public function addDisplay(DisplayAbstract $oDisplay)
+    public function addDisplay(ModelInterface $oDisplay)
     {
         $this->tDisplays[] = $oDisplay;
 
@@ -83,22 +82,23 @@ class IdleScreen extends ModelAbstract
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return MyXML
      */
-    public function getXmlObject()
+    public function getXml(): MyXML
     {
-        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><IdleScreen></IdleScreen>');
+        $oXml = new MyXML('IdleScreen');
         if ($this->sScrType) {
-            $oXml->addChild('ScreenShow', $this->sScrType);
+            $oXml->asObject()->addChild('ScreenShow', $this->sScrType);
         }
-        $oXml->addChild('ShowStatusLine', $this->isStatusLine ? 'true' : 'false');
+        $oXml->asObject()->addChild('ShowStatusLine', $this->isStatusLine ? 'true' : 'false');
         foreach ($this->tDisplays as $oDisplay) {
-            static::xml_adopt($oXml, $oDisplay->getXmlObject());
+            $oXml->insertChild($oDisplay->getXml()->asObject());
         }
-        $softKeys = $oXml->addChild('SoftKeys');
+        $oSoftKeys = new MyXML('SoftKeys');
         foreach ($this->tSoftKeys as $oSoftKey) {
-            static::xml_adopt($softKeys, $oSoftKey->getXml());
+            $oSoftKeys->insertChild($oSoftKey->getXml()->asObject());
         }
+        $oXml->insertChild($oSoftKeys->asObject());
 
         return $oXml;
     }

@@ -21,7 +21,7 @@
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen;
 
 
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Rectangle;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 
 class LCDDisplay
 {

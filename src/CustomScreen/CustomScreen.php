@@ -14,9 +14,8 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen;
 
-use mrcnpdlk\Grandstream\XMLApp\CustomScreen\Geometry\Rectangle;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\Exception;
-use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
 
 
 /**
@@ -24,7 +23,7 @@ use mrcnpdlk\Grandstream\XMLApp\ModelAbstract;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen
  */
-class CustomScreen extends ModelAbstract
+class CustomScreen
 {
     /**
      * @var int

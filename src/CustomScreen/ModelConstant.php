@@ -9,16 +9,50 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
+/**
+ * Created by Marcin.
+ * Date: 26.09.2017
+ * Time: 00:22
+ */
+
+namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen;
 
 
-use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
-
-class ModelAbstract extends ElementAbstract
+class ModelConstant
 {
+    const SOFTKEY_SWITCHSCR       = 'SwitchSCR';
+    const SOFTKEY_XMLSERVICE      = 'XmlService';
+    const SOFTKEY_SIGNIN          = 'SignIn';
+    const SOFTKEY_SIGNOUT         = 'SignOut';
+    const SOFTKEY_BACKSPACE       = 'BackSpace';
+    const SOFTKEY_CANCEL          = 'CANCEL';
+    const SOFTKEY_MISSEDCALLS     = 'MissedCalls';
+    const SOFTKEY_FWDALL          = 'FwdedCalls';
+    const SOFTKEY_CNCLFW          = 'CancelFwd';
+    const SOFTKEY_REDIAL          = 'Redial';
+    const SOFTKEY_REFRESHSTOCK    = 'RefreshStock';
+    const SOFTKEY_REFRESHCURRENCY = 'RefreshCurrency';
+    const SOFTKEY_REVERSECURRENCY = 'ReverseCurrency';
+    const SOFTKEY_VM              = 'VoiceMail';
+    const SOFTKEY_HEADSET         = 'Headset';
+    const SOFTKEY_PHONEBOOK       = 'PhoneBook';
+
+    const FONT_BOLD    = 'bold';
+    const FONT_UNIFONT = 'unifont';
+
+    const HORIZONTAL_ALIGN_CENTER = 'center';
+    const HORIZONTAL_ALIGN_LEFT   = 'left';
+    const HORIZONTAL_ALIGN_RIGHT  = 'right';
+
+    const SCREEN_TYPE_DEFAULT  = null;
+    const SCREEN_TYPE_WEATHER  = 'weatherShow';
+    const SCREEN_TYPE_STOCK    = 'stockShow';
+    const SCREEN_TYPE_CURRENCY = 'currencyShow';
+
+
     /**
      * Displayed on idle screen, weather, stock, currency screen, IP address screen (for GXP140x)
      */
@@ -60,43 +94,4 @@ class ModelAbstract extends ElementAbstract
      * Default display if not specified
      */
     const COND_TYPE_ALWAYS = 'alwaysDisplay';
-
-    /**
-     * @param int|null $tone Grey tone, 0 - white, 100 - black, null - NONE
-     *
-     * @return string
-     */
-    public function getMonoColor(int $tone = null)
-    {
-        if (is_null($tone)) {
-            return 'None';
-        }
-        $tTones = [
-            'White',
-            'Light6',
-            'Light5',
-            'Light4',
-            'Light3',
-            'Light2',
-            'Light1',
-            'LightGray',
-            'Gray',
-            'Dark1',
-            'Dark2',
-            'Dark3',
-            'Dark4',
-            'Dark5',
-            'Dark6',
-            'Black',
-        ];
-        $levels = count($tTones);
-        $index  = (int)ceil($levels * $tone / 100) - 1;
-        if ($index < 0) {
-            $index = 0;
-        } elseif ($index >= $levels) {
-            $index = $levels - 1;
-        }
-
-        return $tTones[$index];
-    }
 }

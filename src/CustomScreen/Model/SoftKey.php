@@ -9,10 +9,14 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
 namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
+
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\CustomScreen\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 
 /**
@@ -20,26 +24,8 @@ namespace mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
-class SoftKey extends ModelAbstract
+class SoftKey implements ModelInterface
 {
-
-    const SOFTKEY_SWITCHSCR       = 'SwitchSCR';
-    const SOFTKEY_XMLSERVICE      = 'XmlService';
-    const SOFTKEY_SIGNIN          = 'SignIn';
-    const SOFTKEY_SIGNOUT         = 'SignOut';
-    const SOFTKEY_BACKSPACE       = 'BackSpace';
-    const SOFTKEY_CANCEL          = 'CANCEL';
-    const SOFTKEY_MISSEDCALLS     = 'MissedCalls';
-    const SOFTKEY_FWDALL          = 'FwdedCalls';
-    const SOFTKEY_CNCLFW          = 'CancelFwd';
-    const SOFTKEY_REDIAL          = 'Redial';
-    const SOFTKEY_REFRESHSTOCK    = 'RefreshStock';
-    const SOFTKEY_REFRESHCURRENCY = 'RefreshCurrency';
-    const SOFTKEY_REVERSECURRENCY = 'ReverseCurrency';
-    const SOFTKEY_VM              = 'VoiceMail';
-    const SOFTKEY_HEADSET         = 'Headset';
-    const SOFTKEY_PHONEBOOK       = 'PhoneBook';
-
     /**
      * @var string
      */
@@ -59,7 +45,7 @@ class SoftKey extends ModelAbstract
      * @param string $action
      * @param string $condition
      */
-    public function __construct(string $action, string $condition = SoftKey::COND_TYPE_ALWAYS)
+    public function __construct(string $action, string $condition = ModelConstant::COND_TYPE_ALWAYS)
     {
         $this->sAction    = $action;
         $this->sCondition = $condition;
@@ -80,18 +66,17 @@ class SoftKey extends ModelAbstract
 
 
     /**
-     * @return \SimpleXMLElement
+     * @return MyXML
      */
-    public function getXml()
+    public function getXml(): MyXML
     {
-        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><SoftKey></SoftKey>');
-        //$oXml->addAttribute('action', $this->sAction);
+        $oXml = new MyXML('SoftKey');
 
         if ($this->sLabel) {
-            $oXml->addAttribute('label', $this->sLabel);
+            $oXml->asObject()->addAttribute('label', $this->sLabel);
         }
-        $oXml->addChild('Action')->addChild($this->sAction);
-        $oXml->addChild('displayCondition')->addChild('conditionType', $this->sCondition);
+        $oXml->asObject()->addChild('Action')->addChild($this->sAction);
+        $oXml->asObject()->addChild('displayCondition')->addChild('conditionType', $this->sCondition);
 
         return $oXml;
     }
