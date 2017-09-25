@@ -15,7 +15,7 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
 
-
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
@@ -28,42 +28,7 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  */
 class Event implements ModelInterface
 {
-    /**
-     * When phone is switching to call state (e.g., offhook to dialing state, or an incoming phone call) from idle
-     */
-    const STATE_CALL_STATE_STARTED = 'callStateStarted';
-    /**
-     * When phone is switching to idle from call state
-     */
-    const STATE_CALL_STATE_ENDED = 'callStateEnded';
-    /**
-     * Resume XML application from Call Ended state
-     */
-    const STATE_RESUME_FROM_CALL_ENDED = 'resumeFromCallEnded';
-    /**
-     * Resume XML application from Call Connected state
-     */
-    const STATE_RESUME_FROM_CALL_CONECTED = 'resumeFromCallConnected';
-    /**
-     * Resume XML application from Call Failed state
-     */
-    const STATE_RESUME_FROM_CALL_FAILED = 'resumeFromCallFailed';
-    /**
-     * Resume XML application from Call On Hold state
-     */
-    const STATE_RESUME_FROM_CALL_ONHOLD = 'resumeFromCallOnhold';
-    /**
-     * Resume XML application from Call Ringing state
-     */
-    const STATE_RESUME_FROM_CALL_RINGING = 'resumeFromCallRinging';
-    /**
-     * When phone is onhook
-     */
-    const STATE_ONHOOK = 'onhook';
-    /**
-     * When phone is offhook
-     */
-    const STATE_OFFHOOK = 'offhook';
+
 
     const ACTION_DIAL             = 'Dial';
     const ACTION_USE_URL          = 'UseURL';

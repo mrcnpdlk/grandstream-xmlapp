@@ -14,7 +14,7 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Display;
 
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;

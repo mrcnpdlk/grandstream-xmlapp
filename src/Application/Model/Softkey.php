@@ -15,7 +15,8 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
 
-
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
@@ -25,11 +26,6 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  */
 class Softkey implements ModelInterface
 {
-    const ACTION_DIAL             = 'Dial';
-    const ACTION_USE_URL          = 'UseURL';
-    const ACTION_APPEND_INPUT_URL = 'AppendInputURL';
-    const ACTION_QUIT_APP         = 'QuitApp';
-
     /**
      * @var string
      */
@@ -76,7 +72,7 @@ class Softkey implements ModelInterface
      */
     public function setCommandId(int $iCommandId = 0)
     {
-        if ($this->sAction === Softkey::ACTION_DIAL) {
+        if ($this->sAction === ModelConstant::ACTION_DIAL) {
             $this->iCommandId = $iCommandId;
         }
 

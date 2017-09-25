@@ -15,7 +15,7 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
 
-
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**

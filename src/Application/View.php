@@ -13,18 +13,17 @@
  */
 
 /**
- * Created by Marcin Pudełek <marcin@pudelek.org.pl>
+ * Created by Marcin.
  * Date: 25.09.2017
- * Time: 16:16
+ * Time: 22:27
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
+namespace mrcnpdlk\Grandstream\XMLApp\Application;
 
 
-use mrcnpdlk\Grandstream\XMLApp\MyXML;
-
-interface ModelInterface
+class View
 {
-
-    public function getXml(): MyXML;
+    public function __construct()
+    {
+    }
 }

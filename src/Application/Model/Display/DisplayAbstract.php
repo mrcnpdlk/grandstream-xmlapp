@@ -20,16 +20,13 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 
+/**
+ * Class DisplayAbstract
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Display
+ */
 class DisplayAbstract
 {
-    const FONT_BOLD    = 'bold';
-    const FONT_UNIFONT = 'unifont';
-
-    const HOR_ALIGN_CENTER = 'center';
-    const HOR_ALIGN_LEFT   = 'left';
-    const HOR_ALIGN_RIGHT  = 'right';
-
-
     /**
      * @var \mrcnpdlk\Grandstream\XMLApp\Helper\Point
      */

@@ -14,6 +14,9 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
 
+
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
@@ -23,15 +26,6 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  */
 class Input implements ModelInterface
 {
-    const TYPE_TEXT     = 'text';
-    const TYPE_PASSWORD = 'password';
-    const TYPE_HIDDEN   = 'hidden';
-    const TYPE_RADIO    = 'radio';
-    const TYPE_CHECKBOX = 'checkbox';
-
-    const DATATYPE_INT    = 'int';
-    const DATATYPE_STRING = 'string';
-
     /**
      * @var string
      */
@@ -82,7 +76,7 @@ class Input implements ModelInterface
      * @param string|null $sValue
      * @param string      $sType
      */
-    public function __construct(string $sName, string $sValue = null, string $sType = Input::TYPE_TEXT)
+    public function __construct(string $sName, string $sValue = null, string $sType = ModelConstant::TYPE_TEXT)
     {
         $this->sName  = $sName;
         $this->sValue = $sValue;
@@ -95,7 +89,7 @@ class Input implements ModelInterface
      *
      * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
      */
-    public function setDataType(string $sDataType = Input::DATATYPE_STRING)
+    public function setDataType(string $sDataType = ModelConstant::DATATYPE_STRING)
     {
         $this->sDataType = $sDataType;
 

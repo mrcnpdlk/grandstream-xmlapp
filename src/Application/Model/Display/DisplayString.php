@@ -14,7 +14,8 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Display;
 
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\ModelInterface;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
@@ -71,8 +72,8 @@ class DisplayString extends DisplayAbstract implements ModelInterface
         Color $oColor = null,
         Color $oColorBg = null
     ) {
-        $this->sFontType = $type ?? DisplayString::FONT_UNIFONT;
-        $this->sHorAlign = $align ?? DisplayString::HOR_ALIGN_LEFT;
+        $this->sFontType = $type ?? ModelConstant::FONT_UNIFONT;
+        $this->sHorAlign = $align ?? ModelConstant::HORIZONTAL_ALIGN_LEFT;
         $this->setColorFont($oColor ?? new Color(100));
         $this->setColorBg($oColorBg ?? new Color(0));
     }
