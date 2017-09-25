@@ -24,7 +24,7 @@ class Contents implements ModelInterface
     /**
      * @var ModelInterface[]
      */
-    private $tElements;
+    private $tElements = [];
 
     /**
      * Contents constructor.

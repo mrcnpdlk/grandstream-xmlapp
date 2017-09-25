@@ -13,11 +13,21 @@
  */
 
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
+/**
+ * Class Select
+ *
+ * This element is to render selection list fields on screen so that users could choose the answer to submit or
+ * proceed. "name=value" will be passed to the query. The text for <item> element is the displayed option for
+ * the list
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
+ */
 class Select implements ModelInterface
 {
     /**
@@ -64,9 +74,9 @@ class Select implements ModelInterface
     }
 
     /**
-     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles $oStyles
+     * @param Styles $oStyles
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Select
+     * @return Select
      */
     public function setStyles(Styles $oStyles)
     {
@@ -79,7 +89,7 @@ class Select implements ModelInterface
      * @param string $sName
      * @param string $sValue
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Select
+     * @return Select
      */
     public function addItem(string $sName, string $sValue)
     {

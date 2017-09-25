@@ -99,7 +99,10 @@ class Softkey implements ModelInterface
         $oXml = new MyXML('Softkey');
         $oXml->asObject()->addAttribute('action', $this->sAction);
         $oXml->asObject()->addAttribute('label', $this->sLabel);
-        $oXml->asObject()->addAttribute('commandArgs', $this->getCommandArgs());
+        if (!is_null($this->sCommandArgs)) {
+            $oXml->asObject()->addAttribute('commandArgs', $this->getCommandArgs());
+        }
+
         if (!is_null($this->getCommandId())) {
             $oXml->asObject()->addAttribute('commandId', $this->getCommandId());
         }

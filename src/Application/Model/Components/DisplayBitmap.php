@@ -12,7 +12,7 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Display;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
@@ -20,6 +20,16 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Bitmap;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
+/**
+ * Class DisplayBitmap
+ *
+ * This element is to display a bitmap picture on the screen. Inside the <Bitmap> tag of the XML document,
+ * the picture must be encoded in base64 format already. There are plenty of base64 encoder online
+ * provided for encoding the .bmp picture. Please make sure the original .bmp picture is in monochrome grey
+ * level 8 before encoding
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
+ */
 class DisplayBitmap extends DisplayAbstract implements ModelInterface
 {
     /**
@@ -53,7 +63,7 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface
     /**
      * @return \mrcnpdlk\Grandstream\XMLApp\MyXML
      */
-    public function getXml() : MyXML
+    public function getXml(): MyXML
     {
         $oXml = new MyXML('DisplayBitmap');
 

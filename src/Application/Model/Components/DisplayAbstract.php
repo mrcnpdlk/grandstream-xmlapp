@@ -13,7 +13,7 @@
  */
 
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Display;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
 use mrcnpdlk\Grandstream\XMLApp\Helper\Color;

@@ -12,15 +12,19 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
  * Class Input
+ *
+ * This element is to render input fields on screen so that users could enter necessary information to submit
+ * or proceed
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model
  */
@@ -87,7 +91,7 @@ class Input implements ModelInterface
     /**
      * @param string $sDataType
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setDataType(string $sDataType = ModelConstant::DATATYPE_STRING)
     {
@@ -99,7 +103,7 @@ class Input implements ModelInterface
     /**
      * @param int $iMaxLength
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setMaxLength(int $iMaxLength)
     {
@@ -109,9 +113,9 @@ class Input implements ModelInterface
     }
 
     /**
-     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles $oStyles
+     * @param Styles $oStyles
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setStyles(Styles $oStyles)
     {
@@ -123,7 +127,7 @@ class Input implements ModelInterface
     /**
      * @param string $sGroupName
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setGroupName(string $sGroupName)
     {
@@ -135,7 +139,7 @@ class Input implements ModelInterface
     /**
      * @param string $sLabel
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setLabel(string $sLabel)
     {
@@ -148,7 +152,7 @@ class Input implements ModelInterface
     /**
      * @param bool $isSelected
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Input
+     * @return Input
      */
     public function setSelected(bool $isSelected = true)
     {

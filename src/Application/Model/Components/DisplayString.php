@@ -12,7 +12,7 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Display;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
@@ -23,6 +23,8 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
  * Class DisplayString
+ *
+ * This element is used for displaying string information on the screen
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
@@ -52,7 +54,7 @@ class DisplayString extends DisplayAbstract implements ModelInterface
      * @param Point     $oPoint
      * @param string    $sString
      */
-    public function __construct(Rectangle $oRectangle, Point $oPoint, string $sString)
+    public function __construct(Rectangle $oRectangle, Point $oPoint = null, string $sString)
     {
         parent::__construct($oPoint, $oRectangle);
         $this->sString = $sString;
