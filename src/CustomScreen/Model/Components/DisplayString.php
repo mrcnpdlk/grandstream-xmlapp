@@ -23,7 +23,7 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class DisplayString
+ * Class ElemString
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
@@ -47,7 +47,7 @@ class DisplayString extends DisplayAbstract implements ModelInterface
     private $sHorAlign;
 
     /**
-     * DisplayString constructor.
+     * ElemString constructor.
      *
      * @param Rectangle $oRectangle
      * @param Point     $oPoint
@@ -84,7 +84,7 @@ class DisplayString extends DisplayAbstract implements ModelInterface
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('DisplayString');
+        $oXml = new MyXML('ElemString');
 
         $oXml->asObject()->addAttribute('font', $this->sFontType);
         $oXml->asObject()->addAttribute('width', $this->getRectangle()->getWidth());

@@ -17,7 +17,7 @@ namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
-interface ComponentInterface
+interface ElemInterface
 {
     public function move(int $iX, int $iY);
 

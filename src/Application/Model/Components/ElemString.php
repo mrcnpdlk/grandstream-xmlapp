@@ -21,19 +21,19 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class DisplayString
+ * Class ElemString
  *
  * This element is used for displaying string information on the screen
  *
- * <DisplayString font="unifont" width="width of the string" height="height of the string" halign="center/left/right" color="color of the string" bgcolor="color of the background" >
+ * <ElemString font="unifont" width="width of the string" height="height of the string" halign="center/left/right" color="color of the string" bgcolor="color of the background" >
  * <X>X location</X>
  * <Y>Y location </Y>
  * <DisplayStr>Display String</DisplayStr>
- * </DisplayString>
+ * </ElemString>
  *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
-class DisplayString extends DisplayAbstract implements ModelInterface, ComponentInterface
+class ElemString extends ElemAbstract implements ModelInterface, ElemInterface
 {
 
     /**
@@ -48,7 +48,7 @@ class DisplayString extends DisplayAbstract implements ModelInterface, Component
     private $oFont;
 
     /**
-     * DisplayString constructor.
+     * ElemString constructor.
      *
      * @param string    $sString
      * @param Rectangle $oRectangle
@@ -64,7 +64,7 @@ class DisplayString extends DisplayAbstract implements ModelInterface, Component
     /**
      * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Font|null $oFont
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemString
      */
     public function setFont(Font $oFont = null)
     {

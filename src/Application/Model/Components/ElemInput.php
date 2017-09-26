@@ -21,14 +21,14 @@ use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class Input
+ * Class ElemInput
  *
  * This element is to render input fields on screen so that users could enter necessary information to submit
  * or proceed
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model
  */
-class Input implements ModelInterface, ComponentInterface
+class ElemInput implements ModelInterface, ElemInterface
 {
     /**
      * @var string
@@ -74,7 +74,7 @@ class Input implements ModelInterface, ComponentInterface
     private $sLabel;
 
     /**
-     * Input constructor.
+     * ElemInput constructor.
      *
      * @param string      $sName
      * @param string|null $sValue
@@ -92,7 +92,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param string $sDataType
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setDataType(string $sDataType = ModelConstant::DATATYPE_STRING)
     {
@@ -104,7 +104,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param Styles $oStyles
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setStyles(Styles $oStyles = null)
     {
@@ -119,7 +119,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param int $iMaxLength
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setMaxLength(int $iMaxLength)
     {
@@ -131,7 +131,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param string $sGroupName
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setGroupName(string $sGroupName)
     {
@@ -143,7 +143,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param string $sLabel
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setLabel(string $sLabel)
     {
@@ -156,7 +156,7 @@ class Input implements ModelInterface, ComponentInterface
     /**
      * @param bool $isSelected
      *
-     * @return Input
+     * @return ElemInput
      */
     public function setSelected(bool $isSelected = true)
     {

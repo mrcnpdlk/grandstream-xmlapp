@@ -22,11 +22,11 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Vector;
 
 /**
- * Class DisplayAbstract
+ * Class ElemAbstract
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Display
  */
-class DisplayAbstract
+class ElemAbstract
 {
     /**
      * @var \mrcnpdlk\Grandstream\XMLApp\Helper\Point
@@ -47,7 +47,7 @@ class DisplayAbstract
 
 
     /**
-     * DisplayAbstract constructor.
+     * ElemAbstract constructor.
      *
      * @param Point|null     $oPoint
      * @param Rectangle|null $oRectangle

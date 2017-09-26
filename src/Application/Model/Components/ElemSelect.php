@@ -20,7 +20,7 @@ use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class Select
+ * Class ElemSelect
  *
  * This element is to render selection list fields on screen so that users could choose the answer to submit or
  * proceed. "name=value" will be passed to the query. The text for <item> element is the displayed option for
@@ -28,7 +28,7 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
  */
-class Select implements ModelInterface, ComponentInterface
+class ElemSelect implements ModelInterface, ElemInterface
 {
     /**
      * A unique id for the select field
@@ -47,7 +47,7 @@ class Select implements ModelInterface, ComponentInterface
     private $tItems;
 
     /**
-     * Select constructor.
+     * ElemSelect constructor.
      *
      * @param string $sName
      */
@@ -60,7 +60,7 @@ class Select implements ModelInterface, ComponentInterface
     /**
      * @param Styles $oStyles
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemSelect
      */
     public function setStyles(Styles $oStyles = null)
     {
@@ -106,7 +106,7 @@ class Select implements ModelInterface, ComponentInterface
      * @param string $sName
      * @param string $sValue
      *
-     * @return Select
+     * @return ElemSelect
      */
     public function addItem(string $sName, string $sValue)
     {
@@ -122,7 +122,7 @@ class Select implements ModelInterface, ComponentInterface
      * @param int $iX
      * @param int $iY
      *
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemSelect
      */
     public function move(int $iX, int $iY)
     {

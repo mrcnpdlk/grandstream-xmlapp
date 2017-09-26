@@ -20,22 +20,22 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Vector;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class DisplayBitmap
+ * Class ElemBitmap
  *
  * This element is to display a bitmap picture on the screen. Inside the <Bitmap> tag of the XML document,
  * the picture must be encoded in base64 format already. There are plenty of base64 encoder online
  * provided for encoding the .bmp picture. Please make sure the original .bmp picture is in monochrome grey
  * level 8 before encoding
  *
- * <DisplayBitmap isfile="true/false" isflash=”true/false”>
+ * <ElemBitmap isfile="true/false" isflash=”true/false”>
  * <Bitmap> Bitmap file encoded in base64 format </Bitmap>
  * <X> X location </X>
  * <Y> Y location </Y>
- * </DisplayBitmap
+ * </ElemBitmap
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
  */
-class DisplayBitmap extends DisplayAbstract implements ModelInterface, ComponentInterface
+class ElemBitmap extends ElemAbstract implements ModelInterface, ElemInterface
 {
     /**
      * @var boolean
@@ -51,7 +51,7 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface, Component
     private $sBitmap;
 
     /**
-     * DisplayBitmap constructor.
+     * ElemBitmap constructor.
      *
      * @param string $sBitmap
      */
@@ -69,7 +69,7 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface, Component
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('DisplayBitmap');
+        $oXml = new MyXML('Bitmap');
 
         $oXml->asObject()->addAttribute('isfile', $this->isFile);
         $oXml->asObject()->addAttribute('isflash', $this->isFlash);

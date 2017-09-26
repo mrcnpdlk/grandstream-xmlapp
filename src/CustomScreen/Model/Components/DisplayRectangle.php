@@ -42,7 +42,7 @@ class DisplayRectangle extends DisplayAbstract implements ModelInterface
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('DisplayRectangle');
+        $oXml = new MyXML('ElemRectangle');
 
         $oXml->asObject()->addAttribute('x', $this->getPoint()->getX());
         $oXml->asObject()->addAttribute('y', $this->getPoint()->getY());

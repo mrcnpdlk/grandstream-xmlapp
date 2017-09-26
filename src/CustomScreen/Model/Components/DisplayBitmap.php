@@ -55,7 +55,7 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('DisplayBitmap');
+        $oXml = new MyXML('ElemBitmap');
 
         $oXml->asObject()->addAttribute('isfile', $this->isFile);
         $oXml->asObject()->addAttribute('isflash', $this->isFlash);

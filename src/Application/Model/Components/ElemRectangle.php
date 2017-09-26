@@ -20,10 +20,10 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
-class DisplayRectangle extends DisplayAbstract implements ModelInterface, ComponentInterface
+class ElemRectangle extends ElemAbstract implements ModelInterface, ElemInterface
 {
     /**
-     * DisplayRectangle constructor.
+     * ElemRectangle constructor.
      *
      * @param int $iWidth
      * @param int $iHeight

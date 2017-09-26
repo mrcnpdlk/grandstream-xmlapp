@@ -9,10 +9,12 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author  Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
+namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
+
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface;
 
 /**
  * Class Container
@@ -23,7 +25,7 @@ class Container
 {
 
     /**
-     * @var \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ComponentInterface[]
+     * @var \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface[]
      */
     private $tElements = [];
 
@@ -32,11 +34,11 @@ class Container
     }
 
     /**
-     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ComponentInterface $oElement
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface $oElement
      *
      * @return $this
      */
-    public function addElement(ComponentInterface $oElement)
+    public function addElement(ElemInterface $oElement)
     {
         $this->tElements[] = $oElement;
 
@@ -59,7 +61,7 @@ class Container
     }
 
     /**
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ComponentInterface[]
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface[]
      */
     public function getElements()
     {

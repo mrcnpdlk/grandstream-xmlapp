@@ -21,12 +21,8 @@
 namespace mrcnpdlk\Grandstream\XMLApp\Application;
 
 
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Container;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayBitmap;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayRectangle;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Input;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Container;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Contents;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Event;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Page;
@@ -46,64 +42,17 @@ class View
     }
 
     /**
-     * @param DisplayString $oString
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInterface $oElement
      *
-     * @return View
+     * @return $this
      */
-    public function addString(DisplayString $oString)
+    public function addElem(ElemInterface $oElement)
     {
-        $this->oScreen->getPage()->getContents()->addElement($oString);
+        $this->oScreen->getPage()->getContents()->addElement($oElement);
 
         return $this;
     }
 
-    /**
-     * @param DisplayBitmap $oBitmap
-     *
-     * @return View
-     */
-    public function addBitmap(DisplayBitmap $oBitmap)
-    {
-        $this->oScreen->getPage()->getContents()->addElement($oBitmap);
-
-        return $this;
-    }
-
-    /**
-     * @param DisplayRectangle $oRectangle
-     *
-     * @return View
-     */
-    public function addRectangle(DisplayRectangle $oRectangle)
-    {
-        $this->oScreen->getPage()->getContents()->addElement($oRectangle);
-
-        return $this;
-    }
-
-    /**
-     * @param Select $oSelect
-     *
-     * @return View
-     */
-    public function addSelect(Select $oSelect)
-    {
-        $this->oScreen->getPage()->getContents()->addElement($oSelect);
-
-        return $this;
-    }
-
-    /**
-     * @param Input $oInput
-     *
-     * @return View
-     */
-    public function addInput(Input $oInput)
-    {
-        $this->oScreen->getPage()->getContents()->addElement($oInput);
-
-        return $this;
-    }
 
     /**
      * @param SoftKey $oSoftkey
@@ -130,15 +79,25 @@ class View
     }
 
     /**
-     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Container $oContainer
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Container $oContainer
      *
-     * @return $this
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\View
      */
     public function addContainer(Container $oContainer)
     {
         foreach ($oContainer->getElements() as $oElement) {
             $this->oScreen->getPage()->getContents()->addElement($oElement);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\View
+     */
+    public function setVisibleStatusLine(bool $isVisible = true)
+    {
+        $this->oScreen->getPage()->setVisibleStatusLine($isVisible);
 
         return $this;
     }
