@@ -14,9 +14,8 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
-use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
-use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Font;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
@@ -26,9 +25,15 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  *
  * This element is used for displaying string information on the screen
  *
+ * <DisplayString font="unifont" width="width of the string" height="height of the string" halign="center/left/right" color="color of the string" bgcolor="color of the background" >
+ * <X>X location</X>
+ * <Y>Y location </Y>
+ * <DisplayStr>Display String</DisplayStr>
+ * </DisplayString>
+ *
  * @package mrcnpdlk\Grandstream\XMLApp\CustomScreen\Model
  */
-class DisplayString extends DisplayAbstract implements ModelInterface
+class DisplayString extends DisplayAbstract implements ModelInterface, ComponentInterface
 {
 
     /**
@@ -38,46 +43,32 @@ class DisplayString extends DisplayAbstract implements ModelInterface
     /**
      * Font type
      *
-     * @var string
+     * @var Font
      */
-    private $sFontType;
-
-    /**
-     * @var string
-     */
-    private $sHorAlign;
+    private $oFont;
 
     /**
      * DisplayString constructor.
      *
-     * @param Rectangle $oRectangle
-     * @param Point     $oPoint
      * @param string    $sString
+     * @param Rectangle $oRectangle
      */
-    public function __construct(Rectangle $oRectangle, Point $oPoint = null, string $sString)
+    public function __construct(string $sString, Rectangle $oRectangle = null)
     {
-        parent::__construct($oPoint, $oRectangle);
+        parent::__construct(new Point(0, 0), $oRectangle);
         $this->sString = $sString;
         $this->setFont();
 
     }
 
     /**
-     * @param string|null                                    $type
-     * @param string|null                                    $align
-     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Color|null $oColor
-     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Color|null $oColorBg
+     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Font|null $oFont
+     *
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString
      */
-    public function setFont(
-        string $type = null,
-        string $align = null,
-        Color $oColor = null,
-        Color $oColorBg = null
-    ) {
-        $this->sFontType = $type ?? ModelConstant::FONT_UNIFONT;
-        $this->sHorAlign = $align ?? ModelConstant::HORIZONTAL_ALIGN_LEFT;
-        $this->setColorFont($oColor ?? new Color(100));
-        $this->setColorBg($oColorBg ?? new Color(0));
+    public function setFont(Font $oFont = null)
+    {
+        $this->oFont = $oFont ?? new Font();
 
         return $this;
     }
@@ -89,11 +80,16 @@ class DisplayString extends DisplayAbstract implements ModelInterface
     {
         $oXml = new MyXML('DisplayString');
 
-        $oXml->asObject()->addAttribute('font', $this->sFontType);
-        $oXml->asObject()->addAttribute('width', $this->getRectangle()->getWidth());
-        $oXml->asObject()->addAttribute('height', $this->getRectangle()->getHeight());
-        $oXml->asObject()->addAttribute('halign', $this->sHorAlign);
-        $oXml->asObject()->addAttribute('color', $this->getColorFont()->get());
+        $oXml->asObject()->addAttribute('font', $this->getFont()->getType());
+        if ($this->getRectangle()->getWidth()) {
+            $oXml->asObject()->addAttribute('width', $this->getRectangle()->getWidth());
+        }
+        if ($this->getRectangle()->getHeight()) {
+            $oXml->asObject()->addAttribute('height', $this->getRectangle()->getHeight());
+        }
+
+        $oXml->asObject()->addAttribute('halign', $this->getFont()->getHorizontalAlign());
+        $oXml->asObject()->addAttribute('color', $this->getFont()->getColor()->get());
         $oXml->asObject()->addAttribute('bgcolor', $this->getColorBg()->get());
         //$oXml->asObject()->addAttribute('renew-rate', 'second');
         //$oXml->asObject()->addAttribute('isrenew', 'true');
@@ -102,5 +98,13 @@ class DisplayString extends DisplayAbstract implements ModelInterface
         $oXml->asObject()->addChild('DisplayStr', $this->sString);
 
         return $oXml;
+    }
+
+    /**
+     * @return \mrcnpdlk\Grandstream\XMLApp\Helper\Font
+     */
+    public function getFont()
+    {
+        return $this->oFont;
     }
 }

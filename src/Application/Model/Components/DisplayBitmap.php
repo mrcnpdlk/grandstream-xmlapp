@@ -16,8 +16,7 @@ namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
-use mrcnpdlk\Grandstream\XMLApp\Helper\Bitmap;
-use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Vector;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
@@ -28,9 +27,15 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  * provided for encoding the .bmp picture. Please make sure the original .bmp picture is in monochrome grey
  * level 8 before encoding
  *
+ * <DisplayBitmap isfile="true/false" isflash=”true/false”>
+ * <Bitmap> Bitmap file encoded in base64 format </Bitmap>
+ * <X> X location </X>
+ * <Y> Y location </Y>
+ * </DisplayBitmap
+ *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
  */
-class DisplayBitmap extends DisplayAbstract implements ModelInterface
+class DisplayBitmap extends DisplayAbstract implements ModelInterface, ComponentInterface
 {
     /**
      * @var boolean
@@ -41,20 +46,19 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface
      */
     private $isFlash;
     /**
-     * @var Bitmap
+     * @var string
      */
-    private $oBitmap;
+    private $sBitmap;
 
     /**
      * DisplayBitmap constructor.
      *
-     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Point|null $oPoint
-     * @param Bitmap                                         $oBitmap
+     * @param string $sBitmap
      */
-    public function __construct(Point $oPoint = null, Bitmap $oBitmap)
+    public function __construct(string $sBitmap)
     {
-        parent::__construct($oPoint);
-        $this->oBitmap = $oBitmap;
+        parent::__construct();
+        $this->sBitmap = $sBitmap;
         $this->isFile  = "false";
         $this->isFlash = "false";
 
@@ -71,7 +75,7 @@ class DisplayBitmap extends DisplayAbstract implements ModelInterface
         $oXml->asObject()->addAttribute('isflash', $this->isFlash);
         $oXml->asObject()->addChild('X', $this->getPoint()->getX());
         $oXml->asObject()->addChild('Y', $this->getPoint()->getX());
-        $oXml->asObject()->addChild('Bitmap', $this->oBitmap->get());
+        $oXml->asObject()->addChild('Bitmap', $this->sBitmap);
 
         return $oXml;
     }

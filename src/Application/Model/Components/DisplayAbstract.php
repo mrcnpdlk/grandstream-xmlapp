@@ -19,6 +19,7 @@ namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Vector;
 
 /**
  * Class DisplayAbstract
@@ -43,10 +44,7 @@ class DisplayAbstract
      * @var Color
      */
     protected $oColorBorder;
-    /**
-     * @var Color
-     */
-    protected $oColorFont;
+
 
     /**
      * DisplayAbstract constructor.
@@ -58,14 +56,6 @@ class DisplayAbstract
     {
         $this->oPoint     = $oPoint ?? new Point(0, 0);
         $this->oRectangle = $oRectangle ?? new Rectangle(0, 0);
-    }
-
-    /**
-     * @return Point
-     */
-    public function getPoint()
-    {
-        return $this->oPoint;
     }
 
     /**
@@ -117,22 +107,23 @@ class DisplayAbstract
     }
 
     /**
-     * @param Color $oColor
+     * @param int $iX
+     * @param int $iY
      *
      * @return $this
      */
-    public function setColorFont(Color $oColor)
+    public function move(int $iX, int $iY)
     {
-        $this->oColorFont = $oColor;
+        $this->getPoint()->move(new Vector($iX, $iY));
 
         return $this;
     }
 
     /**
-     * @return Color
+     * @return Point
      */
-    public function getColorFont()
+    public function getPoint()
     {
-        return $this->oColorFont ?? new Color(100);
+        return $this->oPoint;
     }
 }

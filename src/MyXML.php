@@ -144,6 +144,18 @@ class MyXML
     }
 
     /**
+     * @param string $sColor
+     *
+     * @return \mrcnpdlk\Grandstream\XMLApp\MyXML
+     */
+    public function setColor(string $sColor)
+    {
+        $this->oXml->addAttribute('color', $sColor);
+
+        return $this;
+    }
+
+    /**
      * @param string $sName
      *
      * @return \mrcnpdlk\Grandstream\XMLApp\MyXML

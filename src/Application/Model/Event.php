@@ -60,7 +60,8 @@ class Event implements ModelInterface
      */
     public function getXml(): MyXML
     {
-        $oXml    = new MyXML('Event');
+        $oXml = new MyXML('Event');
+        $oXml->asObject()->addAttribute('state', $this->sState);
         $oAction = new MyXML('Action');
         $oAction->asObject()->addAttribute('action', $this->sAction);
         $oAction->asObject()->addAttribute('commandArgs', $this->sCommandArgs);

@@ -12,40 +12,49 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
+
 namespace mrcnpdlk\Grandstream\XMLApp\Helper;
 
 /**
- * Class Point
+ * Class Vector
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Helper
  */
-class Point
+class Vector
 {
     /**
-     * @var int
+     * @var integer
      */
     private $iX;
     /**
-     * @var int
+     * @var integer
      */
     private $iY;
 
     /**
-     * Point constructor.
+     * Vector constructor.
      *
-     * @param int $x
-     * @param int $y
+     * @param int $iX
+     * @param int $iY
      */
-    public function __construct(int $x, int $y)
+    public function __construct(int $iX, int $iY)
     {
-        $this->iX = $x;
-        $this->iY = $y;
+        $this->iX = $iX;
+        $this->iY = $iY;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLength()
+    {
+        return sqrt(pow($this->getDeltaX(), 2) + pow($this->getDeltaY(), 2));
     }
 
     /**
      * @return int
      */
-    public function getX()
+    public function getDeltaX()
     {
         return $this->iX;
     }
@@ -53,16 +62,8 @@ class Point
     /**
      * @return int
      */
-    public function getY()
+    public function getDeltaY()
     {
         return $this->iY;
-    }
-
-    public function move(Vector $oVector)
-    {
-        $this->iX += $oVector->getDeltaX();
-        $this->iY += $oVector->getDeltaY();
-
-        return $this;
     }
 }

@@ -28,7 +28,7 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model
  */
-class Input implements ModelInterface
+class Input implements ModelInterface, ComponentInterface
 {
     /**
      * @var string
@@ -86,6 +86,7 @@ class Input implements ModelInterface
         $this->sValue = $sValue;
         $this->sType  = $sType;
         $this->setDataType();
+        $this->setStyles();
     }
 
     /**
@@ -101,6 +102,21 @@ class Input implements ModelInterface
     }
 
     /**
+     * @param Styles $oStyles
+     *
+     * @return Input
+     */
+    public function setStyles(Styles $oStyles = null)
+    {
+        if (is_null($oStyles)) {
+            $oStyles = new Styles();
+        }
+        $this->oStyles = $oStyles;
+
+        return $this;
+    }
+
+    /**
      * @param int $iMaxLength
      *
      * @return Input
@@ -108,18 +124,6 @@ class Input implements ModelInterface
     public function setMaxLength(int $iMaxLength)
     {
         $this->iMaxLength = $iMaxLength;
-
-        return $this;
-    }
-
-    /**
-     * @param Styles $oStyles
-     *
-     * @return Input
-     */
-    public function setStyles(Styles $oStyles)
-    {
-        $this->oStyles = $oStyles;
 
         return $this;
     }
@@ -171,10 +175,31 @@ class Input implements ModelInterface
         $oXml->asObject()->addAttribute('value', $this->sValue);
         $oXml->asObject()->addAttribute('type', $this->sType);
         if ($this->oStyles) {
-            $oXml->insertChild($this->oStyles->getXml()->asObject());
+            $oXml->insertChild($this->getStyles()->getXml()->asObject());
         }
 
 
         return $oXml;
+    }
+
+    /**
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles
+     */
+    public function getStyles()
+    {
+        return $this->oStyles;
+    }
+
+    /**
+     * @param int $iX
+     * @param int $iY
+     *
+     * @return $this
+     */
+    public function move(int $iX, int $iY)
+    {
+        $this->getStyles()->move($iX, $iY);
+
+        return $this;
     }
 }

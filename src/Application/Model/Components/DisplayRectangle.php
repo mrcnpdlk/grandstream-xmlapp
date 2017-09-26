@@ -20,26 +20,24 @@ use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
-class DisplayRectangle extends DisplayAbstract implements ModelInterface
+class DisplayRectangle extends DisplayAbstract implements ModelInterface, ComponentInterface
 {
     /**
      * DisplayRectangle constructor.
      *
-     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle  $oRectangle
-     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Point|null $oPoint
+     * @param int $iWidth
+     * @param int $iHeight
      */
-    public function __construct(
-        Rectangle $oRectangle,
-        Point $oPoint = null
-    ) {
-        parent::__construct($oPoint, $oRectangle);
+    public function __construct(int $iWidth, int $iHeight)
+    {
+        parent::__construct(new Point(0, 0), new Rectangle($iWidth, $iHeight));
         $this->setColorBorder(new Color(100));
     }
 
     /**
      * @return MyXML
      */
-    public function getXml() : MyXML
+    public function getXml(): MyXML
     {
         $oXml = new MyXML('DisplayRectangle');
 
@@ -49,7 +47,6 @@ class DisplayRectangle extends DisplayAbstract implements ModelInterface
         $oXml->asObject()->addAttribute('height', $this->getRectangle()->getHeight());
         $oXml->asObject()->addAttribute('bgcolor', $this->getColorBg()->get());
         $oXml->asObject()->addAttribute('border-color', $this->getColorBorder()->get());
-        $oXml->asObject()->addAttribute('color', $this->getColorFont()->get());
 
         return $oXml;
     }

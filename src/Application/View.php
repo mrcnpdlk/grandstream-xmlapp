@@ -27,6 +27,7 @@ use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Input;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Contents;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Event;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Page;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Screen;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\SoftKey;
@@ -111,6 +112,18 @@ class View
     public function addSoftkey(SoftKey $oSoftkey)
     {
         $this->oScreen->getPage()->addSoftkey($oSoftkey);
+
+        return $this;
+    }
+
+    /**
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Event $oEvent
+     *
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\View
+     */
+    public function addEvent(Event $oEvent)
+    {
+        $this->oScreen->addEvent($oEvent);
 
         return $this;
     }

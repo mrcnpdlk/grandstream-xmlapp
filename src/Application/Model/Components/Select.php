@@ -28,7 +28,7 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model\Components
  */
-class Select implements ModelInterface
+class Select implements ModelInterface, ComponentInterface
 {
     /**
      * A unique id for the select field
@@ -46,9 +46,30 @@ class Select implements ModelInterface
      */
     private $tItems;
 
+    /**
+     * Select constructor.
+     *
+     * @param string $sName
+     */
     public function __construct(string $sName)
     {
         $this->sName = $sName;
+        $this->setStyles();
+    }
+
+    /**
+     * @param Styles $oStyles
+     *
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select
+     */
+    public function setStyles(Styles $oStyles = null)
+    {
+        if (is_null($oStyles)) {
+            $oStyles = new Styles();
+        }
+        $this->oStyles = $oStyles;
+
+        return $this;
     }
 
     /**
@@ -59,7 +80,7 @@ class Select implements ModelInterface
         $oXml = new MyXML('select');
         $oXml->setName($this->sName);
         if ($this->oStyles) {
-            $oXml->insertChild($this->oStyles->getXml()->asObject());
+            $oXml->insertChild($this->getStyles()->getXml()->asObject());
         }
         $oItems = new MyXML('items');
         foreach ($this->tItems as $item) {
@@ -74,15 +95,11 @@ class Select implements ModelInterface
     }
 
     /**
-     * @param Styles $oStyles
-     *
-     * @return Select
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles
      */
-    public function setStyles(Styles $oStyles)
+    public function getStyles()
     {
-        $this->oStyles = $oStyles;
-
-        return $this;
+        return $this->oStyles;
     }
 
     /**
@@ -97,6 +114,19 @@ class Select implements ModelInterface
             'name'  => $sName,
             'value' => $sValue,
         ];
+
+        return $this;
+    }
+
+    /**
+     * @param int $iX
+     * @param int $iY
+     *
+     * @return \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select
+     */
+    public function move(int $iX, int $iY)
+    {
+        $this->getStyles()->move($iX, $iY);
 
         return $this;
     }
