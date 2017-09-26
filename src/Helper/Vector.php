@@ -66,4 +66,14 @@ class Vector
     {
         return $this->iY;
     }
+
+    /**
+     * @param Vector $oVector
+     *
+     * @return Vector
+     */
+    public function add(Vector $oVector)
+    {
+        return new Vector($this->getDeltaX() + $oVector->getDeltaX(), $this->getDeltaY() + $oVector->getDeltaY());
+    }
 }

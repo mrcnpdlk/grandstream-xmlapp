@@ -66,7 +66,7 @@ class Contact implements ModelInterface
         $this->oPhone   = $oPhone;
     }
 
-    public function setOAddress(Address $oAddress)
+    public function setAddress(Address $oAddress)
     {
         $this->oAddress = $oAddress;
     }

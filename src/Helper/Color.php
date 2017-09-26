@@ -39,7 +39,7 @@ class Color
     }
 
     /**
-     * @param int|null $tone 0-100% greyscale tone. NULL = None
+     * @param int|null $tone 0 (White) - 100% (Black) greyscale tone. NULL = None
      *
      * @return string
      */

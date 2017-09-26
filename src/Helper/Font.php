@@ -64,10 +64,34 @@ class Font
     }
 
     /**
+     * @param Color $oColor
+     *
+     * @return Font
+     */
+    public function setColor(Color $oColor)
+    {
+        $this->oColor = $oColor;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getHorizontalAlign()
     {
         return $this->sHorizontalAlign;
+    }
+
+    /**
+     * @param string $sHorizontalAlign
+     *
+     * @return Font
+     */
+    public function setHorizontalAlign(string $sHorizontalAlign)
+    {
+        $this->sHorizontalAlign = $sHorizontalAlign;
+
+        return $this;
     }
 }
