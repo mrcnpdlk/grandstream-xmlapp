@@ -16,7 +16,6 @@ namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
-use mrcnpdlk\Grandstream\XMLApp\Helper\Vector;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**

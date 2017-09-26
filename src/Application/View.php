@@ -53,7 +53,6 @@ class View
         return $this;
     }
 
-
     /**
      * @param SoftKey $oSoftkey
      *
@@ -93,7 +92,9 @@ class View
     }
 
     /**
-     * @return \mrcnpdlk\Grandstream\XMLApp\Application\View
+     * @param bool $isVisible
+     *
+     * @return View
      */
     public function setVisibleStatusLine(bool $isVisible = true)
     {

@@ -72,7 +72,7 @@ class Contact implements ModelInterface
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return MyXML
      */
     public function getXml(): MyXML
     {

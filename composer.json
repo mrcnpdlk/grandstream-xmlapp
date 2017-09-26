@@ -3,9 +3,18 @@
   "description": "Grandstream telephone utils",
   "keywords": [
     "grandstream",
-    "GXP21xx"
+    "xmlapp",
+    "phonebook",
+    "GXP2120",
+    "GXP2110",
+    "GXP2100",
+    "GXP2124",
+    "GXP1450",
+    "GXP140x",
+    "GXP116x",
+    "xml"
   ],
-  "type": "project",
+  "type": "library",
   "license": "MIT",
   "authors": [
     {
@@ -18,13 +27,11 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.0",
-    "psr/log": "1.0.2",
-    "sabre/xml": "~2"
+    "psr/log": "1.0.2"
   },
   "require-dev": {
     "monolog/monolog": "^1.23",
-    "phpunit/phpunit": "~6.3",
-    "phpfastcache/phpfastcache": "~6.0"
+    "phpunit/phpunit": "~6.3"
   },
   "autoload": {
     "psr-4": {

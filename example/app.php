@@ -27,23 +27,32 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $oView = new View();
 
-// first container
-
+/**
+ * create 1st Container
+ */
 $oContainer_1 = new Container();
-
+/**
+ * create required elements
+ */
 $oString_1 = new ElemString('First line');
 $oString_2 = new ElemString('Second line');
 $oString_2->move(0, 10);
-
+/**
+ * Add some elements to Container and easy move all container on LCD Display
+ * Pay attention to the size of the screen
+ */
 $oContainer_1->addElement($oString_1)
              ->addElement($oString_2)
              ->move(0, 60)
 ;
-
+/**
+ * Put Container on LCD Display
+ */
 $oView->addContainer($oContainer_1);
 
-// second Container
-
+/**
+ * create 2nd Container
+ */
 $oContainer_2 = new Container();
 
 $oSelect_1 = new ElemSelect('select_1');
@@ -73,17 +82,30 @@ $oContainer_2
 ;
 $oView->addContainer($oContainer_2);
 
-
-
+/**
+ * Elements can be added directly on the View without using Container
+ */
 $oView->addElem(new ElemRectangle(10, 10));
-$oView->addSoftkey(new SoftKey(ModelConstant::ACTION_QUIT_APP, 'Wyjscie'));
 
+/**
+ * You can also define SoftKey
+ */
+$oView->addSoftkey(new SoftKey(ModelConstant::ACTION_QUIT_APP, 'Exit'));
+
+/**
+ * And define Events
+ */
 $oEvent = new Event(ModelConstant::STATE_OFFHOOK, ModelConstant::ACTION_DIAL, '299');
 $oView->addEvent($oEvent);
 
+/**
+ * Last thing. Left status bar can be disabled (more space on screen)
+ */
 $oView->setVisibleStatusLine(false);
 
+/**
+ * Echo text for phone
+ */
 header('Content-type: application/xml; charset="utf-8"');
-
 echo $oView->asTxt();
 
