@@ -9,20 +9,20 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
 namespace mrcnpdlk\Grandstream\XMLApp\AddressBook;
 
 use mrcnpdlk\Grandstream\XMLApp\AddressBook\Model\Contact;
-use mrcnpdlk\Grandstream\XMLApp\ElementAbstract;
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
  * Class AddressBook
  *
  * @package mrcnpdlk\Grandstream\XMLApp\AddressBook
  */
-class AddressBook extends ElementAbstract
+class AddressBook implements ModelInterface
 {
 
     /**
@@ -44,13 +44,13 @@ class AddressBook extends ElementAbstract
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return MyXML
      */
-    public function getXmlObject()
+    public function getXml(): MyXML
     {
-        $oXml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><AddressBook></AddressBook>');
-        foreach ($this->tContacts as $contact) {
-            static::xml_adopt($oXml, $contact->getXmlObject());
+        $oXml = new MyXML('AddressBook');
+        foreach ($this->tContacts as $oContact) {
+            $oXml->insertChild($oContact->getXml()->asObject());
         }
 
         return $oXml;
