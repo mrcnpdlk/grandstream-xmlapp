@@ -44,7 +44,9 @@ class View
      */
     public function addContact(string $lastName, string $number, string $firstName = null, int $iAccountId = 1)
     {
-        $this->oAddressBook->addContact(new Contact($lastName, new Phone($number, $iAccountId)));
+        $this->oAddressBook->addContact(
+            new Contact($lastName, new Phone($number, $iAccountId), $firstName)
+        );
 
         return $this;
     }
