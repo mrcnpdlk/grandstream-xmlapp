@@ -78,6 +78,8 @@ class DisplayString extends DisplayAbstract implements ModelInterface
         $this->sHorAlign = $align ?? ModelConstant::HORIZONTAL_ALIGN_LEFT;
         $this->setColorFont($oColor ?? new Color(100));
         $this->setColorBg($oColorBg ?? new Color(0));
+
+        return $this;
     }
 
     /**
@@ -93,10 +95,10 @@ class DisplayString extends DisplayAbstract implements ModelInterface
         $oXml->asObject()->addAttribute('halign', $this->sHorAlign);
         $oXml->asObject()->addAttribute('color', $this->getColorFont()->get());
         $oXml->asObject()->addAttribute('bgcolor', $this->getColorBg()->get());
-        $oXml->asObject()->addAttribute('renew-rate', 'second');
-        $oXml->asObject()->addAttribute('isrenew', 'true');
+        //$oXml->asObject()->addAttribute('renew-rate', 'second');
+        //$oXml->asObject()->addAttribute('isrenew', 'true');
         $oXml->asObject()->addChild('X', $this->getPoint()->getX());
-        $oXml->asObject()->addChild('Y', $this->getPoint()->getX());
+        $oXml->asObject()->addChild('Y', $this->getPoint()->getY());
         $oXml->asObject()->addChild('DisplayStr', $this->sString);
 
         return $oXml;

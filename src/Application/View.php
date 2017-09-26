@@ -29,7 +29,7 @@ use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Contents;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Page;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Screen;
-use mrcnpdlk\Grandstream\XMLApp\Application\Model\Softkey;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\SoftKey;
 
 class View
 {
@@ -104,11 +104,11 @@ class View
     }
 
     /**
-     * @param Softkey $oSoftkey
+     * @param SoftKey $oSoftkey
      *
      * @return View
      */
-    public function addSoftkey(Softkey $oSoftkey)
+    public function addSoftkey(SoftKey $oSoftkey)
     {
         $this->oScreen->getPage()->addSoftkey($oSoftkey);
 

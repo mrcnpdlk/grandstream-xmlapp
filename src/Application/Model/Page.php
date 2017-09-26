@@ -32,7 +32,7 @@ class Page implements ModelInterface
     private $oContents;
 
     /**
-     * @var Softkey[]
+     * @var SoftKey[]
      */
     private $tSoftkeys = [];
 
@@ -107,12 +107,12 @@ class Page implements ModelInterface
     /**
      * Defines softkey display and action
      *
-     * @param Softkey $oSoftkey
+     * @param SoftKey $oSoftkey
      *
      * @return Page
      *
      */
-    public function addSoftkey(Softkey $oSoftkey)
+    public function addSoftkey(SoftKey $oSoftkey)
     {
         $this->tSoftkeys[] = $oSoftkey;
 
@@ -131,7 +131,7 @@ class Page implements ModelInterface
         $oXml->insertChild($this->getContents()->getXml()->asObject());
 
         //Softkeys
-        $oSoftkeys = new MyXML('Softkeys');
+        $oSoftkeys = new MyXML('SoftKeys');
         foreach ($this->tSoftkeys as $oSoftkey) {
             $oSoftkeys->insertChild($oSoftkey->getXml()->asObject());
         }

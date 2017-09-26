@@ -20,11 +20,11 @@ use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
 /**
- * Class Softkey
+ * Class SoftKey
  *
  * @package mrcnpdlk\Grandstream\XMLApp\Application\Model
  */
-class Softkey implements ModelInterface
+class SoftKey implements ModelInterface
 {
     /**
      * @var string
@@ -52,7 +52,7 @@ class Softkey implements ModelInterface
     private $iCommandId;
 
     /**
-     * Softkey constructor.
+     * SoftKey constructor.
      *
      * @param string $sAction
      * @param string $sLabel
@@ -95,7 +95,7 @@ class Softkey implements ModelInterface
      */
     public function getXml(): MyXML
     {
-        $oXml = new MyXML('Softkey');
+        $oXml = new MyXML('SoftKey');
         $oXml->asObject()->addAttribute('action', $this->sAction);
         $oXml->asObject()->addAttribute('label', $this->sLabel);
         if (!is_null($this->sCommandArgs)) {

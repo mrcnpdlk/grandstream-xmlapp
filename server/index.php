@@ -12,32 +12,60 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayRectangle;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select;
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\SoftKey;
+use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
+use mrcnpdlk\Grandstream\XMLApp\Application\View;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Point;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-$oApp = new \mrcnpdlk\Grandstream\XMLApp\App();
+$oView = new View();
 
-$oInstanceCacheRedis = new \phpFastCache\Helper\Psr16Adapter(
-    'redis',
-    [
-        "host"                => null, // default localhost
-        "port"                => null, // default 6379
-        'defaultTtl'          => 3600 * 24, // 24h
-        'ignoreSymfonyNotice' => true,
-    ]);
-
-
-$oInstanceLogger = new \Monolog\Logger('XMLAPP');
-$oInstanceLogger->pushHandler(new \Monolog\Handler\ErrorLogHandler(
-        \Monolog\Handler\ErrorLogHandler::SAPI,
-        \Psr\Log\LogLevel::DEBUG
-    )
+$oView->addString(new DisplayString(new Rectangle(50, 0), null, 'Ala ma kota a kot ma ale'));
+$oView->addString(
+    (new DisplayString(new Rectangle(50, 0), new Point(0, 0), 'Druga linia'))->setFont(ModelConstant::FONT_BOLD,
+        ModelConstant::HORIZONTAL_ALIGN_RIGHT)
 );
 
-$oApp->setCacheInstance($oInstanceCacheRedis)
-     ->setLoggerInstance($oInstanceLogger)
-;
+$oSelect = new Select('selektor');
+$oSelect->setStyles(new  \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles(
+    new Point(0, 40),
+    150
+));
+$oSelect->addItem('jeden', 1);
+$oSelect->addItem('dwa', 2);
+$oSelect->addItem('trzy', 3);
+$oView->addSelect($oSelect);
 
-$oApp->getLogger()->debug('request',$_SERVER);
-$oApp->getLogger()->debug('request',$_REQUEST);
 
-echo file_get_contents(__DIR__ . '/index.xml');
+$oSelect = new Select('selektor2');
+$oSelect->setStyles(new  \mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles(
+    new Point(0, 60),
+    150
+));
+$oSelect->addItem('jeden', 1);
+$oSelect->addItem('dwa', 2);
+$oSelect->addItem('trzy', 3);
+$oView->addSelect($oSelect);
+
+
+$oView->addRectangle(
+    (new DisplayRectangle(
+        new Rectangle(20, 20),
+        new Point(0, 80)
+    ))->setColorBg(new Color(50))
+);
+
+$oView->addSoftkey(new SoftKey(ModelConstant::ACTION_QUIT_APP, 'Wyjscie'));
+
+error_log(print_r($oView->asTxt(), true));
+
+header('Content-type: application/xml; charset="utf-8"');
+
+echo $oView->asTxt();
+
