@@ -21,6 +21,7 @@
 namespace mrcnpdlk\Grandstream\XMLApp\Application;
 
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Container;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayBitmap;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayRectangle;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString;
@@ -124,6 +125,20 @@ class View
     public function addEvent(Event $oEvent)
     {
         $this->oScreen->addEvent($oEvent);
+
+        return $this;
+    }
+
+    /**
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Container $oContainer
+     *
+     * @return $this
+     */
+    public function addContainer(Container $oContainer)
+    {
+        foreach ($oContainer->getElements() as $oElement) {
+            $this->oScreen->getPage()->getContents()->addElement($oElement);
+        }
 
         return $this;
     }

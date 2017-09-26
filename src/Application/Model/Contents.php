@@ -15,6 +15,7 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model;
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ComponentInterface;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelInterface;
 use mrcnpdlk\Grandstream\XMLApp\MyXML;
 
@@ -34,11 +35,11 @@ class Contents implements ModelInterface
     }
 
     /**
-     * @param ModelInterface $oElement
+     * @param \mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ComponentInterface $oElement
      *
      * @return Contents
      */
-    public function addElement(ModelInterface $oElement)
+    public function addElement(ComponentInterface $oElement)
     {
         $this->tElements[] = $oElement;
 

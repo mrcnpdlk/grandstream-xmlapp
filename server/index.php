@@ -12,6 +12,7 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Container;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayRectangle;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\DisplayString;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\Select;
@@ -26,8 +27,18 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $oView = new View();
 
-$oView->addString(new DisplayString('First line'));
-$oView->addString(new DisplayString('Second line'));
+$oContainer = new Container();
+
+$oString_1 = new DisplayString('First line');
+$oString_2 = new DisplayString('Second line');
+$oString_2->move(0, 10);
+
+$oContainer->addElement($oString_1)
+           ->addElement($oString_2)
+           ->move(0, 60)
+;
+
+$oView->addContainer($oContainer);
 
 $oSelect = new Select('select_1');
 $oSelect->setStyles((new  Styles(100))

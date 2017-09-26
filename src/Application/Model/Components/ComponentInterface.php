@@ -15,7 +15,11 @@
 namespace mrcnpdlk\Grandstream\XMLApp\Application\Model\Components;
 
 
+use mrcnpdlk\Grandstream\XMLApp\MyXML;
+
 interface ComponentInterface
 {
     public function move(int $iX, int $iY);
+
+    public function getXml(): MyXML;
 }
