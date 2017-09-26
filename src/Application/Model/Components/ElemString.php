@@ -35,7 +35,6 @@ use mrcnpdlk\Grandstream\XMLApp\MyXML;
  */
 class ElemString extends ElemAbstract implements ModelInterface, ElemInterface
 {
-
     /**
      * @var string
      */
@@ -82,17 +81,15 @@ class ElemString extends ElemAbstract implements ModelInterface, ElemInterface
 
         $oXml->asObject()->addAttribute('font', $this->getFont()->getType());
         if ($this->getRectangle()->getWidth()) {
-            $oXml->asObject()->addAttribute('width', $this->getRectangle()->getWidth());
+            $oXml->setWidth($this->getRectangle()->getWidth());
         }
         if ($this->getRectangle()->getHeight()) {
-            $oXml->asObject()->addAttribute('height', $this->getRectangle()->getHeight());
+            $oXml->setHeight($this->getRectangle()->getHeight());
         }
 
+        $oXml->setColor($this->getFont()->getColor()->get());
+        $oXml->setColorBg($this->getColorBg()->get());
         $oXml->asObject()->addAttribute('halign', $this->getFont()->getHorizontalAlign());
-        $oXml->asObject()->addAttribute('color', $this->getFont()->getColor()->get());
-        $oXml->asObject()->addAttribute('bgcolor', $this->getColorBg()->get());
-        //$oXml->asObject()->addAttribute('renew-rate', 'second');
-        //$oXml->asObject()->addAttribute('isrenew', 'true');
         $oXml->asObject()->addChild('X', $this->getPoint()->getX());
         $oXml->asObject()->addChild('Y', $this->getPoint()->getY());
         $oXml->asObject()->addChild('DisplayStr', $this->sString);

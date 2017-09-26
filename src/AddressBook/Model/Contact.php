@@ -60,10 +60,11 @@ class Contact implements ModelInterface
      */
     private $icon = null;
 
-    public function __construct(string $lastName, Phone $oPhone)
+    public function __construct(string $lastName, Phone $oPhone, string $firstName = null)
     {
-        $this->lastName = $lastName;
-        $this->oPhone   = $oPhone;
+        $this->lastName  = $lastName;
+        $this->oPhone    = $oPhone;
+        $this->firstName = $firstName;
     }
 
     public function setAddress(Address $oAddress)
