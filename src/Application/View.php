@@ -12,12 +12,6 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
-/**
- * Created by Marcin.
- * Date: 25.09.2017
- * Time: 22:27
- */
-
 namespace mrcnpdlk\Grandstream\XMLApp\Application;
 
 

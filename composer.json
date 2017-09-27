@@ -5,6 +5,7 @@
     "grandstream",
     "xmlapp",
     "phonebook",
+    "addressbook",
     "GXP2120",
     "GXP2110",
     "GXP2100",
@@ -27,12 +28,12 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.0",
-    "ext-imagick": "*",
     "psr/log": "1.0.2"
   },
   "require-dev": {
     "monolog/monolog": "^1.23",
-    "phpunit/phpunit": "~6.3"
+    "phpunit/phpunit": "~6.3",
+    "ext-imagick": "*"
   },
   "autoload": {
     "psr-4": {

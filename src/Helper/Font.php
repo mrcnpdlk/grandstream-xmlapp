@@ -14,7 +14,11 @@
 
 namespace mrcnpdlk\Grandstream\XMLApp\Helper;
 
-
+/**
+ * Class Font
+ *
+ * @package mrcnpdlk\Grandstream\XMLApp\Helper
+ */
 class Font
 {
     /**

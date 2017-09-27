@@ -27,6 +27,9 @@ Install the latest version with [composer](https://packagist.org/packages/mrcnpd
 composer require mrcnpdlk/grandstream-xmlapp
 ```
 
+Module for inserting images requires Imagick PHP extension.
+Pictures are converted `on the fly` to greyscale 8-bit format.
+
 ## Basic usage
 ### AddressBook
 ```php
