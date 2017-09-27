@@ -83,9 +83,25 @@ class HelperTest extends TestCase
 
     public function testRectangle()
     {
-        $oRectangle = new Rectangle(5,2);
-        $this->assertEquals(10,$oRectangle->getArea());
-        $this->assertEquals(5,$oRectangle->getWidth());
-        $this->assertEquals(2,$oRectangle->getHeight());
+        $oRectangle = new Rectangle(5, 2);
+        $this->assertEquals(10, $oRectangle->getArea());
+        $this->assertEquals(5, $oRectangle->getWidth());
+        $this->assertEquals(2, $oRectangle->getHeight());
+    }
+
+    public function testRectangleSquare()
+    {
+        $oRectangle = new Rectangle(5);
+        $this->assertEquals(25, $oRectangle->getArea());
+        $this->assertEquals(5, $oRectangle->getWidth());
+        $this->assertEquals(5, $oRectangle->getHeight());
+    }
+
+    public function testRectangleOutOfRange()
+    {
+        $oRectangle = new Rectangle(-5, -2);
+        $this->assertEquals(0, $oRectangle->getArea());
+        $this->assertEquals(0, $oRectangle->getWidth());
+        $this->assertEquals(0, $oRectangle->getHeight());
     }
 }

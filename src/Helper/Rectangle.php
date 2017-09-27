@@ -38,8 +38,8 @@ class Rectangle
      */
     public function __construct(int $w, int $h = null)
     {
-        $this->iWidth  = $w;
-        $this->iHeight = $h ?? $w; //if null set SQUARE
+        $this->iWidth  = $w < 0 ? 0 : $w;
+        $this->iHeight = $h < 0 ? 0 : ($h ?? $this->iWidth);
     }
 
     /**
