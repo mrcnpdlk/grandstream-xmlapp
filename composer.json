@@ -27,6 +27,7 @@
   "prefer-stable": true,
   "require": {
     "php": ">=7.0",
+    "ext-imagick": "*",
     "psr/log": "1.0.2"
   },
   "require-dev": {

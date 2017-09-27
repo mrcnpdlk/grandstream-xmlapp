@@ -12,6 +12,7 @@
  * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemBitmap;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemRectangle;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemSelect;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemString;
@@ -22,6 +23,7 @@ use mrcnpdlk\Grandstream\XMLApp\Application\Model\Styles;
 use mrcnpdlk\Grandstream\XMLApp\Application\ModelConstant;
 use mrcnpdlk\Grandstream\XMLApp\Application\View;
 use mrcnpdlk\Grandstream\XMLApp\Helper\Color;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -97,6 +99,14 @@ $oView->addSoftkey(new SoftKey(ModelConstant::ACTION_QUIT_APP, 'Exit'));
  */
 $oEvent = new Event(ModelConstant::STATE_OFFHOOK, ModelConstant::ACTION_DIAL, '299');
 $oView->addEvent($oEvent);
+/**
+ * Add picture (100x100) to screen
+ */
+$oBitmap = new ElemBitmap(
+    __DIR__ . '/../devel/logo.png',
+    new Rectangle(100)
+);
+$oView->addElem($oBitmap->move(120, 0));
 
 /**
  * Last thing. Left status bar can be disabled (more space on screen)
