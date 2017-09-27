@@ -15,7 +15,9 @@
 namespace mrcnpdlk\Grandstream\XMLApp;
 
 
+use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemBitmap;
 use mrcnpdlk\Grandstream\XMLApp\Application\Model\Components\ElemInput;
+use mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle;
 
 class ApplicationTest extends TestCase
 {
@@ -23,5 +25,10 @@ class ApplicationTest extends TestCase
     {
         $oInput = new ElemInput('elem_input');
         $this->assertEquals(true, is_string($oInput->getXml()->asText()));
+    }
+
+    public function testComponentElementBitmap(){
+        $oBitmap = new ElemBitmap('',new Rectangle(10));
+        $this->assertEquals(true,is_string($oBitmap->getXml()->asText()));
     }
 }
