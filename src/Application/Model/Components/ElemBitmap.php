@@ -59,7 +59,9 @@ class ElemBitmap extends ElemAbstract implements ModelInterface, ElemInterface
     /**
      * ElemBitmap constructor.
      *
-     * @param string $sImgUrl
+     * @param string                                        $sImgPath
+     * @param \mrcnpdlk\Grandstream\XMLApp\Helper\Rectangle $oRectangle
+     *
      */
     public function __construct(string $sImgPath, Rectangle $oRectangle)
     {
