@@ -94,14 +94,13 @@ class ElemBitmap extends ElemAbstract implements ModelInterface, ElemInterface
      */
     private function getBase64()
     {
+        if (!extension_loaded('imagick')) {
+            return base64_encode(file_get_contents(__DIR__ . '/../../../img/no_ext.bmp'));
+        }
         try {
-            if (!extension_loaded('imagick')) {
-                throw new \Exception('No imagick loaded');
-            }
-
             return base64_encode($this->resizeImage($this->oCanvas->getWidth(), $this->oCanvas->getHeight())->getImageBlob());
         } catch (\Exception $e) {
-            return '';
+            return base64_encode(file_get_contents(__DIR__ . '/../../../img/no_file.bmp.bmp'));
         }
     }
 
