@@ -32,7 +32,9 @@
   },
   "require-dev": {
     "monolog/monolog": "^1.23",
-    "phpunit/phpunit": "~6.3",
+    "phpunit/phpunit": "~6.3"
+  },
+  "suggest": {
     "ext-imagick": "*"
   },
   "autoload": {
