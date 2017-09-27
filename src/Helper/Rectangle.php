@@ -9,7 +9,7 @@
  * For the full copyright and license information, please view source file
  * that is bundled with this package in the file LICENSE
  *
- * @author Marcin Pudełek <marcin@pudelek.org.pl>
+ * @author  Marcin Pudełek <marcin@pudelek.org.pl>
  */
 
 namespace mrcnpdlk\Grandstream\XMLApp\Helper;
@@ -33,13 +33,13 @@ class Rectangle
     /**
      * Rectangle constructor.
      *
-     * @param int $w
-     * @param int $h
+     * @param int      $w
+     * @param int|null $h
      */
-    public function __construct(int $w, int $h)
+    public function __construct(int $w, int $h = null)
     {
         $this->iWidth  = $w;
-        $this->iHeight = $h;
+        $this->iHeight = $h ?? $w; //if null set SQUARE
     }
 
     /**
