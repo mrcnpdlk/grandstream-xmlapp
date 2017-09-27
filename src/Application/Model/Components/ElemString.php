@@ -92,7 +92,7 @@ class ElemString extends ElemAbstract implements ModelInterface, ElemInterface
         $oXml->asObject()->addAttribute('halign', $this->getFont()->getHorizontalAlign());
         $oXml->asObject()->addChild('X', $this->getPoint()->getX());
         $oXml->asObject()->addChild('Y', $this->getPoint()->getY());
-        $oXml->asObject()->addChild('DisplayStr', $this->sString);
+        $oXml->asObject()->addChild('DisplayStr', $this->cleanString($this->sString));
 
         return $oXml;
     }
@@ -103,5 +103,23 @@ class ElemString extends ElemAbstract implements ModelInterface, ElemInterface
     public function getFont()
     {
         return $this->oFont;
+    }
+
+    /**
+     * Escape chars
+     *
+     * @param string $str
+     *
+     * @return string
+     */
+    private function cleanString(string $str)
+    {
+        $str = str_replace('&', '&amp;', $str);
+        $str = str_replace('"', '&quot;', $str);
+        $str = str_replace('\'', '&apos;', $str);
+        $str = str_replace('<', '&lt;', $str);
+        $str = str_replace('>', '&gt;', $str);
+
+        return $str;
     }
 }
