@@ -100,7 +100,7 @@ class ElemBitmap extends ElemAbstract implements ModelInterface, ElemInterface
         try {
             return base64_encode($this->resizeImage($this->oCanvas->getWidth(), $this->oCanvas->getHeight())->getImageBlob());
         } catch (\Exception $e) {
-            return base64_encode(file_get_contents(__DIR__ . '/../../../img/no_file.bmp.bmp'));
+            return base64_encode(file_get_contents(__DIR__ . '/../../../img/no_file.bmp'));
         }
     }
 
